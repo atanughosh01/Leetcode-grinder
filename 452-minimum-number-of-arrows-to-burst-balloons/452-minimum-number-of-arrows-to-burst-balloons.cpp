@@ -24,6 +24,7 @@ public:
 };
 */
 
+/*
 class Solution {
 public:
     
@@ -44,6 +45,29 @@ public:
                 startX = max(point[0], startX);
                 endX = min(point[1], endX);
             }
+        }
+        return cnt;
+    }
+};
+*/
+
+class Solution {
+public:
+    
+    // sort based on the start of the ballon
+    int findMinArrowShots(vector<vector<int>>& points) {
+        if(points.size() == 0) return 0;
+    
+        // for sorting on basis of 1st column
+        sort(points.begin(), points.end());
+        int endX = points[0][1];
+        int cnt = 1;
+        for(auto point : points) {
+            if(point[0] > endX) {
+                cnt++;
+                endX = point[1];
+            }
+            endX = min(point[1], endX);
         }
         return cnt;
     }
