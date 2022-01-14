@@ -1,3 +1,4 @@
+/*
 class Solution {
 public:
   int myAtoi(string s) {
@@ -35,9 +36,9 @@ public:
     // iterate until non-digit character is not found or we can say iterate till found character is a digit
     while(index < len && isDigit(s[index])){
 
-      /* s[index] - '0' is to convert the char digit into int digit eg: '5' - '0' --> 5
-      or else it will store the ASCII value of 5 i.e. 53,
-      so we do 53(ASCII of 5) - 48(ASCII of 0(zero)) to get 5 as int*/
+      // s[index] - '0' is to convert the char digit into int digit eg: '5' - '0' --> 5
+      // or else it will store the ASCII value of 5 i.e. 53,
+      // so we do 53(ASCII of 5) - 48(ASCII of 0(zero)) to get 5 as int
       int digit = s[index] - '0';
 
       // to avoid integer overflow
@@ -57,4 +58,55 @@ private:
   bool isDigit(char ch){
     return ch >= '0' && ch <= '9';
   }
+};
+*/
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        
+        const int len = s.size();
+        
+        if(len == 0){
+            return 0;
+        }
+        
+        int index = 0;
+        while(index < len && s[index] == ' '){
+            ++index;
+        }
+
+        if(index == len){
+            return 0;
+        }
+        
+        char ch;
+        bool isNegative = (ch = s[index]) == '-';
+        
+        if(isNegative || ch == '+'){
+            ++index;
+        }
+		
+        const int maxLimit = INT_MAX / 10;
+        int result = 0;
+        while(index < len && isDigit(ch = s[index])){ 
+
+            int digit = ch - '0';
+
+            if(result > maxLimit || (result == maxLimit && digit > 7)){
+                return isNegative ? INT_MIN : INT_MAX;
+            }
+
+            result = (result * 10) + digit;
+            
+            ++index;
+        }
+        
+        return isNegative ? -result : result;
+    }
+    
+    private:
+    bool isDigit(char ch){
+        return ch >= '0' && ch <= '9';
+    }
 };
