@@ -9,6 +9,7 @@ using namespace std;
 
  // } Driver Code Ends
 
+/*
 class Solution{
     public:
     vector<int> mergeHeaps(vector<int> &a, vector<int> &b, int n, int m) {
@@ -21,6 +22,18 @@ class Solution{
         while(j<m)
             ans[k++]=b[j++];
         return ans;
+    }
+};
+*/
+
+class Solution{
+    public:
+    vector<int> mergeHeaps(vector<int> &a, vector<int> &b, int n, int m) {
+        vector <int> merged(n + m);
+        for (int i = 0; i < n; i++) merged[i] = a[i];
+        for (int i = 0; i < m; i++) merged[i + n] = b[i];
+        make_heap(merged.begin(), merged.end());
+        return merged;
     }
 };
 
