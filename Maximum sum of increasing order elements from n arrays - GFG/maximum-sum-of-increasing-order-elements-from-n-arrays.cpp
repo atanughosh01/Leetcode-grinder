@@ -35,21 +35,20 @@ int main() {
 
 // Problem : https://practice.geeksforgeeks.org/problems/maximum-sum-of-increasing-order-elements-from-n-arrays4848/1
 
-
+/*
 int maximumSum(int n, int m, vector<vector<int>> &a) {
 
     for (auto& v : a) {
         sort(v.begin(), v.end());
     }
 
-    int sum = a[n - 1][m - 1], x = a[n - 1][m - 1];
+    int x = a[n - 1][m - 1];
+    int sum = x;
 
     for (int i = n - 2; i >= 0; i--) {
-
         if (a[i][0] >= a[i + 1][m - 1]) {
             return 0;
         }
-
         for (int j = m - 1; j >= 0; j--) {
             if (a[i][j] < x) {
                 x = a[i][j];
@@ -59,6 +58,28 @@ int maximumSum(int n, int m, vector<vector<int>> &a) {
                 return 0;
             }
         }
+    }
+    return sum;
+}
+*/
+
+int maximumSum( int n,int m, vector<vector<int>> &a) {
+    
+    int prev = *max_element(&a[n-1][0],	&a[n-1][m-1] + 1);
+    int sum = prev;
+
+    for (int i = n - 2; i >= 0; i--) {
+        int max_smaller = INT_MIN;
+        for (int j = m - 1; j >= 0; j--) {
+            if (a[i][j] < prev && a[i][j] > max_smaller)
+                max_smaller = a[i][j];
+        }
+
+        if (max_smaller == INT_MIN)
+            return 0;
+
+        prev = max_smaller;
+        sum += max_smaller;
     }
     return sum;
 }
