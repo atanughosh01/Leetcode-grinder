@@ -1,5 +1,5 @@
 # Maximum sum of increasing order elements from n arrays
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given <strong>n</strong> arrays of size <strong>m </strong>each. Find maximum sum obtained by selecting a number from each array such that the element&nbsp;selected from the <strong>i-th</strong> array is more than the element selected from <strong>(i-1)-th</strong> array. If maximum sum cannot be obtained then return <strong>0</strong>.</span></p>
 
