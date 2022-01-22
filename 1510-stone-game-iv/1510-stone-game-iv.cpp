@@ -7,7 +7,7 @@ public:
             for(int j=1; j*j<=i; j++) {
                 if(dp[i-(j*j)]==false) {
                     dp[i] = true;
-                    continue;
+                    break;
                 }
             }
         }
