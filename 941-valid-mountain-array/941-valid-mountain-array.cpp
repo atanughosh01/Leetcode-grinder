@@ -66,13 +66,17 @@ public:
 
 */
 
+/*
+
+// Clean and optimized solution
+
 class Solution {
 public:
     bool validMountainArray(vector<int>& arr) {
         int f = false;
         int c = 0, u = 0;
 
-        for(int i = 1; i < arr.size()-1; i++){
+        for(int i = 1; i < (int)arr.size()-1; i++){
             if(arr[i] == arr[i-1] || arr[i] == arr[i+1])
                 return false;
             if(arr[i] > arr[i-1] && arr[i] > arr[i+1])
@@ -84,4 +88,26 @@ public:
     }
 };
 
+*/
 
+class Solution {
+public:
+    bool validMountainArray(vector<int>& arr) {
+        bool up=1, a=0, b=0;
+        int sz= (int)arr.size();
+
+        if(sz < 3) return false;
+
+        for(int i=1;i<sz;++i){
+            if (arr[i-1] < arr[i]){
+                a=1;
+                if(up==0) return false;
+            } else if (arr[i-1] > arr[i]){
+                b=1;
+                if(up==1) up=0;
+            } else
+                return false;
+        }
+        return a and b ;
+    }
+};
