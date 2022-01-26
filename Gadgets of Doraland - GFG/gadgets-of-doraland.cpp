@@ -8,7 +8,7 @@ using namespace std;
 
 // Problem : https://practice.geeksforgeeks.org/problems/bbd15e2da95880979ce65acc7360e2c5681664e65520/1
 
-
+/*
 class Solution{
 public:
     vector<int> TopK(vector<int>& array, int k){
@@ -26,6 +26,28 @@ public:
         vector<int>res;
         for(auto a : v) if(k-- == 0) return res; else res.push_back(a.first);
         return res;
+    }
+};
+*/
+
+
+class Solution{
+public:
+    vector<int> TopK(vector<int>& array, int k) {
+        vector<int> ans;
+        int arr[10002]={0};
+        priority_queue<pair<int,int>> pq;
+        for(int i=0;i<array.size();i++){
+            arr[array[i]]++;
+        }
+        for(int i=0;i<1e4+2;i++){
+            pq.push({arr[i],i});
+        }
+        for(int i=0;i<k;i++){
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+        return ans;
     }
 };
 
