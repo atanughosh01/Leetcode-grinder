@@ -12,7 +12,7 @@ class WordDictionary {
      }
 
 public:
-     WordDictionary() {}
+     WordDictionary() {;}
 
      void addWord(string word) {
           words[word.size()].push_back(word);
