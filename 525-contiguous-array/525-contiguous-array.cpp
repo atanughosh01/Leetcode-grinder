@@ -69,7 +69,7 @@ public:
 		int n = (int)nums.size();
 		unordered_map<int, int> mp{{0, -1}};
 		for (int i = 0; i < n; i++) {
-			sum += (nums[i] ? -1 : 1);
+			sum += (nums[i] ? 1 : -1);
 			if (mp.count(sum))
 				len = max(len, i - mp[sum]);
 			else
