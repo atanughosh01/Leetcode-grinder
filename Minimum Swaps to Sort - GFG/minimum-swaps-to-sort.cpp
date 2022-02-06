@@ -10,6 +10,9 @@ using namespace std;
 
 class Solution {
 public:
+
+/*
+	//	Quadratic Time Complexity
 	int minSwaps(vector<int>& nums) {
 		vector<pair<int, int>> v;
 		int n = nums.size();
@@ -24,6 +27,26 @@ public:
 				j = v[i].second;
 				swaps++;
 			}
+		}
+		return swaps;
+	}
+*/
+
+	//	Linear Time Complexity
+	int minSwaps(vector<int>& nums) {
+		vector<pair<int, int>> v;
+		int n = (int)nums.size();
+		for (int i = 0; i < n; i++)
+			v.emplace_back(nums[i], i);
+		sort(v.begin(), v.end());
+		int swaps = 0;
+		for (int i = 0; i < n;) {
+			if (v[i].second != i) {
+				swaps++;
+				swap(v[i], v[v[i].second]);
+			}
+			else
+				i++;
 		}
 		return swaps;
 	}
