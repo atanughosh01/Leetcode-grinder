@@ -1,4 +1,5 @@
-class Solution {
+/*
+class Solution { 
 public:
     char findTheDifference(string s, string t) {
         int n = (int)s.size();
@@ -9,5 +10,19 @@ public:
                 return t[i];
         }
         return t[n];
+    }
+};
+
+*/
+
+
+// XOR
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        char r=0;
+        for(char c:s) r ^=c;
+        for(char c:t) r ^=c;
+        return r;
     }
 };
