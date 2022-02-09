@@ -1,6 +1,8 @@
+/*
+
 class Solution {
 public:
-    int findPairs(vector<int>& nums, int k) {
+    int findPairs(vector<int>& nums, int k){
         int n = (int)nums.size();
         set<pair<int, int>> s;
         for(int i=0; i<n; ++i){
@@ -14,4 +16,52 @@ public:
         }
         return (int)s.size();
     }
+};
+
+
+// I have no idea why my Binary Search Implementation isn't working, LOL
+class Solution {
+private:
+    int binSrch(vector<int>& arr, int l, int r, int x){
+        if (r >= l) {
+            int mid = l + (r - l) / 2;
+            if (arr[mid] == x)
+                return mid;
+            if (arr[mid] > x)
+                return binSrch(arr, l, mid - 1, x);
+            return binSrch(arr, mid + 1, r, x);
+        }
+        return -1;
+    }
+public:
+    int findPairs(vector<int>& nums, int k){
+        int n = (int)nums.size();
+        set<pair<int, int>> s;
+        for(int i=0; i<n; ++i){
+            int tar = k+nums[i];
+            int idx = binSrch(nums, 0, n-1, tar);
+            if(idx != -1 and idx != i) {
+                s.insert({nums[i], tar});
+            }
+        }
+        return (int)s.size();
+    }
+};
+
+*/
+
+class Solution {
+public:
+  int findPairs(vector<int>& nums, int k) {
+    if (k < 0)
+        return 0;
+    unordered_map<int, int> mp;
+    for (int n : nums) mp[n]++;
+    int cnt = 0;
+    for (auto p : mp) {
+      if ((!k and p.second>1) or (k and mp.count(p.first+k)))
+          ++cnt;
+    }
+    return cnt;
+  }
 };
