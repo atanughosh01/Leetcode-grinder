@@ -18,15 +18,13 @@ struct Node {
 // Problem : https://practice.geeksforgeeks.org/problems/rotate-a-linked-list/1
 
 
-class Solution
-{
+class Solution {
     public:
     Node* rotate(Node* head, int k) {
         if(head==nullptr || head->next==nullptr){
             return head;
         }
         int count=0;
-        
         Node* temp=head;
         Node* mid=nullptr;
         Node* tail=nullptr;
