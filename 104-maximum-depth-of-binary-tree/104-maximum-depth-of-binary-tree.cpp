@@ -38,7 +38,7 @@ public:
         int depth=0;
         while(!q.empty()) {
             ++depth;
-            int s=q.size();
+            int s = q.size();
             for (int i=0; i<s; i++) {
                 TreeNode* front=q.front();
                 q.pop();
