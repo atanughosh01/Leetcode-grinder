@@ -11,13 +11,13 @@ public:
             }
         }
         
-        int sum = 0;
+        int ans = 0;
         for(int i=0; i<n; ++i) {
             for(int j=0; j<n; ++j) {
-                sum += max((min(rows[i], cols[j]) - grid[i][j]), 0);
+                ans += max((min(rows[i], cols[j]) - grid[i][j]), 0);
             }
         }
         
-        return sum;
+        return ans;
     }
 };
