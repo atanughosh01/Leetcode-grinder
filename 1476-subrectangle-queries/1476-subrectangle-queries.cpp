@@ -1,7 +1,8 @@
 class SubrectangleQueries {
-vector<vector<int>> rec;
-vector<vector<int>> updates;
-vector<int> v;
+private:
+    vector<vector<int>> rec;
+    vector<vector<int>> updates;
+    vector<int> v;
 public:
     SubrectangleQueries(vector<vector<int>>& rectangle) {
         rec = rectangle;
