@@ -1,0 +1,2 @@
+`P[i]` stores the index in P of number i. For every element `queries[j]`, `P[queries[j]]` stores the current index of `queries[j]` in P. Set it to zero as it is moving to the beginning of P , and all the element in front of it move one step backward.
+​
