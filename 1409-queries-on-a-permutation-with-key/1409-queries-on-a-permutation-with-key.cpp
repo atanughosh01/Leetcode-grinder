@@ -36,7 +36,7 @@ public:
         for (int j=0; j<n; j++) {
             temp = p[queries[j]];
             for(int i=1; i<=m; i++)
-                if(p[i] <= temp) {
+                if(p[i] < temp) {
                     p[i]++;
                 }
             p[queries[j]] = 0;
