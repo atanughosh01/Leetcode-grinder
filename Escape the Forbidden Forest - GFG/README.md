@@ -3,7 +3,7 @@
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Penelope and her classmates are lost in the Forbidden Forest and the Devil is out to get them. But Penelope has magical powers that can build bridges across the dangerous river and take her friends to safety. The only bridges that can withstand the Devil's wrath are the ones built between two similar trees in the forest.&nbsp;<br>
 Given str1 and str2 denoting the order of trees on either side of the river, find the maximum number of bridges that Penelope can build and save everyone from the Devil.&nbsp;</span><br>
-<span style="font-size:18px"><strong>Note:</strong> Each tree in the forest belongs to one of the 3 categories represented by * or # or @</span></p>
+<span style="font-size:18px"><strong>Note:</strong> Each tree in the forest belongs to one of the 3 categories represented by * or # or @. Also, the bridges can not cross each other.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
