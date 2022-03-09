@@ -25,7 +25,8 @@
 class Solution {
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) { 
-        if(!root) return new TreeNode(val);
+        if(!root)
+            return new TreeNode(val);
         
         auto curr = root;
         
