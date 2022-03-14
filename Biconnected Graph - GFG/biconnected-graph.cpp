@@ -22,7 +22,7 @@ public:
            g[u].push_back(v);
            g[v].push_back(u);
         }
-        for(auto i:g){
+        for(auto i : g){
             if(i.size()<2) {
                 return 0;
             }   
