@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-#define ll long long int
+#define ll long long
 const int MOD = 1e9 + 7;
 
 class Solution {
