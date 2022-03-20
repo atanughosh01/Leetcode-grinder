@@ -12,8 +12,8 @@ private:
     }
 public:
     int minDominoRotations(vector<int>& A, vector<int>& B) {
-        int res1 = countDifference(A, B, A[A.size()-1]);
-        int res2 = countDifference(A, B, B[B.size()-1]);
+        int res1 = countDifference(A, B, A[0]);
+        int res2 = countDifference(A, B, B[0]);
         return min(res1, res2) > 0 ? min(res1, res2) : max(res1, res2);
     }
 };
