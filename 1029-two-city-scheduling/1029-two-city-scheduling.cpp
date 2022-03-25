@@ -1,18 +1,16 @@
 class Solution {
 public:
-    static bool com(int a,int b){
-        return a>b;
-    }
     int twoCitySchedCost(vector<vector<int>>& costs) {
-        int ans(0);
+        int minCost = 0, n = costs.size()/2;
         vector<int> refund;
-        for(auto it : costs){
-            ans += it[0];
-            refund.emplace_back(it[0]-it[1]);
+        for(vector<int> cost : costs){
+            minCost += cost[0];
+            refund.emplace_back(cost[1]-cost[0]);
         }
-        sort(begin(refund), end(refund), com);
-        for(int i=0; i<(refund.size()/2); i++)
-            ans -= refund[i];
-        return ans;
+        sort(refund.begin(), refund.end());
+        for(int i=0; i<n; i++) {
+            minCost += refund[i];
+        }
+        return minCost;
     }
 };
