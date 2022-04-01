@@ -12,9 +12,26 @@
 */
 
 
+
+/*
+    class Solution {
+    public:
+        void reverseString(vector<char>& s){
+            return reverse(s.begin(), s.end());
+        }
+    };
+*/
+
+
 class Solution {
 public:
     void reverseString(vector<char>& s){
-        return reverse(s.begin(), s.end());
+        for(int l = 0, r = s.size() - 1; l < r; ++l, --r) {
+            if(s[l] != s[r]) {
+                s[l] ^= s[r]; 
+                s[r] ^= s[l];
+                s[l] ^= s[r];
+            }
+        }
     }
 };
