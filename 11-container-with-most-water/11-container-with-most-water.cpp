@@ -26,7 +26,11 @@ public:
             int A = (r-l)*min(height[l], height[r]);
             ans = max(ans, A);
             if (height[r] > height[l]) l++;
-            else r--;
+            else if (height[r] < height[l]) r--;
+            else {
+                l++;
+                r--;
+            }
         }
         return ans;
     }
