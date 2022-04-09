@@ -10,6 +10,7 @@ public:
                 balance++;
             }
         }
-        return res + balance;
+        res += balance;
+        return res;
     }
 };
