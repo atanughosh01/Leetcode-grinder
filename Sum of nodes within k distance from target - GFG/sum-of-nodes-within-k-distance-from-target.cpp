@@ -95,36 +95,34 @@ class Solution{
 private:
     int ans = 0 , target;
     bool find = false;
-    int recFunc(Node* root , int k , bool find) {
-        if(!root || k == 0) return 0;
-        if(find) {
+    int recFunc(Node* root, int k, bool find) {
+        if (!root || k == 0) return 0;
+        if (find) {
             ans += root->data;
-            recFunc(root->left , k-1 , true);
-            recFunc(root->right , k-1 , true);
+            recFunc(root->left, k-1, true);
+            recFunc(root->right, k-1, true);
             return 1;
-        }
-        else if(root->data == target) {
+        } else if (root->data == target) {
             this->ans += root->data;
-            recFunc(root->left , k , true);
-            recFunc(root->right , k , true);
+            recFunc(root->left, k, true);
+            recFunc(root->right, k, true);
             return k;
         }
-        int r1 = recFunc(root->left , k , false);
-        int r2 = recFunc(root->right , k , false);
-        if(r1 > 0) {
+        int r1 = recFunc(root->left, k, false);
+        int r2 = recFunc(root->right, k, false);
+        if (r1 > 0) {
             ans += root->data;
-            recFunc(root->right , r1-1 , true);
-        }
-        else if(r2 > 0) {
+            recFunc(root->right, r1-1, true);
+        } else if (r2 > 0) {
             ans += root->data;
-            recFunc(root->left , r2-1 , true);
+            recFunc(root->left, r2-1, true);
         }
-        return max(r1-1 , r2-1);
+        return max(r1-1, r2-1);
     }
 public:
     int sum_at_distK(Node* root, int target, int k){
         this->target = target;
-        recFunc(root , k , false);
+        recFunc(root, k, false);
         return ans;
     }
 };
