@@ -1,7 +1,6 @@
 class Solution {
 private:
     vector<int> fact;
-    
     void findfact(int n) {
         fact = vector<int>(n);
         fact[0] = 1;
@@ -11,7 +10,6 @@ private:
         for(int i=2; i<n; i++)
             fact[i] = i*fact[i-1];
     }
-
 public:
     string getPermutation(int N, int K) {
         
