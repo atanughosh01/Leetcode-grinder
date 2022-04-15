@@ -1,1 +1,1 @@
-​
+https://leetcode.com/problems/trim-a-binary-search-tree/discuss/501234/C++:-Detailed-explanation.-Recursive-Approach
