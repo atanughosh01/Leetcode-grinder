@@ -52,6 +52,7 @@ public:
             listNum++;
             tail = tail->next;
         }
+        
         tail->next = head;
         int newHeadIndex = listNum - k % listNum;
 
