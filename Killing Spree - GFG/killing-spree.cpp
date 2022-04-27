@@ -15,10 +15,10 @@ class Solution {
 public:
     long long int killinSpree(long long int n) {
         long long int i , sum , val, ans = 0;
-        for(i = 1; sum <= n; i++, ans++) {
+        for(i = 1; sum <= n; i++) {
            val = i*i;
            sum += val;
-        //   ans++;
+          ans++;
        }
        return ans - 1;
     }
