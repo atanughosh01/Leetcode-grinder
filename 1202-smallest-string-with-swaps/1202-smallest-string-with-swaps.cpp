@@ -29,7 +29,8 @@ public:
                 }
                 sort(pos.begin(), pos.end());
                 sort(tmp.begin(), tmp.end());
-                for(int z = 0; z<pos.size(); z++) {
+                int m = (int)(pos.size());
+                for(int z = 0; z<m; z++) {
                     ans[pos[z]] = tmp[z];
                 }
             }
