@@ -26,7 +26,7 @@ private:
     }
 public:
     int partyHouse(int N, vector<vector<int>> &adj) {
-        int mn = INT_MAX, house = -1;
+        int mn = INT_MAX;
         for (int i = 1; i <= N; i++) {
             vector<int> vis(N + 1, 0);
             max_d = 0;
