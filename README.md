@@ -1,2 +1,2 @@
 # Leetcode-grinder
-Solutions for LeetCode according to ascending difficulty
+Original Solutions of LeetCode and GeeksForGeeks algorithmic problems
