@@ -1,7 +1,7 @@
 /*
     class Solution {
     public:
-        int maxArea(vector<int>& height) {
+        int maxArea(vector<int> &height) {
             int n = (int)height.size();
             int ans = INT_MIN;
             for (int i=0; i<n; i++) {
@@ -16,10 +16,9 @@
 */
 
 
-
 class Solution {
 public:
-    int maxArea(vector<int>& height) {
+    int maxArea(vector<int> &height) {
         int n = (int)height.size();
         int ans = INT_MIN, l = 0, r = n-1;
         while (l <= r) {
