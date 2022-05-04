@@ -1,19 +1,19 @@
 class Solution {
 public:
-    int maxOperations(vector<int> &nums, int k) {
-        unordered_map<int, int> mp;
-        for (int x : nums) mp[x]++;
-        int cnt  = 0, n = nums.size();
-        for (int i=0; i<n; i++) {
-            auto itr = mp.find(k - nums[i]);
-			if (itr != mp.end() && mp[k - nums[i]] > 0) {
-				mp[k - nums[i]]--;
-				if (mp[nums[i]] > 0) {
-					mp[nums[i]]--;
+	int maxOperations(vector<int> &nums, int k) {
+		int cnt  = 0;
+		unordered_map<int, int> mp;
+		for (int num : nums) mp[num]++;
+		for (int num : nums) {
+			auto itr = mp.find(k - num);
+			if (itr != mp.end() && mp[k - num] > 0) {
+				mp[k - num]--;
+				if (mp[num] > 0) {
+					mp[num]--;
 					cnt++;
 				}
 			}
-        }
-        return cnt;
-    }
+		}
+		return cnt;
+	}
 };
