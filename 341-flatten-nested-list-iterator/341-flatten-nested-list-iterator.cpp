@@ -18,10 +18,8 @@
 
 
 class NestedIterator {
-public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
-        dfs(nestedList);
-    }
+private:
+    stack<int> stk;
     void dfs(vector<NestedInteger> &nestedList) {
         for(int i=nestedList.size()-1; i>=0; i--) {
             if(nestedList[i].isInteger()) {
@@ -31,6 +29,10 @@ public:
             }
          }
     }
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        dfs(nestedList);
+    }
     int next() {
         int nxt = stk.top();
         stk.pop();
@@ -39,8 +41,6 @@ public:
     bool hasNext() {
         return !stk.empty();
     }
-private:
-    stack<int> stk;
 };
 
 
