@@ -58,8 +58,8 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         unordered_map<char, int> freq;
-        int start = -1, max_len = 0;
-        for (int i = 0; i < s.size(); i++) {
+        int start = -1, max_len = 0, n = s.size();
+        for (int i = 0; i < n; i++) {
             if (freq.count(s[i]) != 0) {
                 start = max(start, freq[s[i]]);
             }
