@@ -10,8 +10,7 @@ class Solution {
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         pq.push(make_pair(0, K));
         pair<int, int> temp;
-        bool vis[N + 1];
-        memset(vis, false, sizeof(vis));
+        vector<bool> vis(N+1, false);
         while (!pq.empty()) {
             temp = pq.top();
             pq.pop();
