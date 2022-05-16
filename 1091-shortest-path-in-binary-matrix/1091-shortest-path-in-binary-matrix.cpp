@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+    int shortestPathBinaryMatrix(vector<vector<int>> &grid) {
+        if (grid.size() == 0) return 0;
         int row = grid.size(), col = grid[0].size();
         queue<pair<int, int>> q;
         if (grid[0][0] == 0) q.push({0, 0});
