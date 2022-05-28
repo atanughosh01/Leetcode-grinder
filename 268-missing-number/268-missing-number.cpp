@@ -1,11 +1,28 @@
+/*
+    class Solution {
+    public:
+        int missingNumber(vector<int> &nums) {
+            int sum = 0, n = nums.size(); // sum of all numbers initially 0
+            int total = n*(n + 1)/2;
+            for (auto num : nums) {
+                sum += num;
+            }
+            return total - sum;
+        }
+    };
+*/
+
+
 class Solution {
 public:
     int missingNumber(vector<int> &nums) {
-        int sum = 0, n = nums.size();
-        int total = n*(n + 1)/2;
-        for (auto num : nums) {
-            sum += num;
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<n; i++) {
+            if(nums[i] != i) {
+                return nums[i]-1;
+            }
         }
-        return total - sum;
+        return nums[n-1]+1;
     }
 };
