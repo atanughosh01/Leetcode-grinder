@@ -30,13 +30,29 @@
 */
 
 
+/*
+    class Solution {
+    public:
+        int missingNumber(vector<int> &nums) {
+            int sum = 0, n = nums.size();
+            for (auto num : nums) {
+                sum += num;
+            }
+            return (n*(n+1)/2) - sum;
+        }
+    };
+*/
+
+
 class Solution {
 public:
     int missingNumber(vector<int> &nums) {
-        int sum = 0, n = nums.size();
-        for (auto num : nums) {
-            sum += num;
+        int i = 0, res = nums.size();
+        for (int num : nums) {
+            res ^= num;
+            res ^= i;
+            i++;
         }
-        return (n*(n+1)/2) - sum;
+        return res;
     }
 };
