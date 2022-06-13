@@ -15,8 +15,7 @@ class Solution {
 public:
 	int isRepeat(string s) {
 		string str = s + s;
-        str.pop_back();
-        str = str.substr(1);
+        str = str.substr(1, str.size()-2);
         return ((str.find(s)!=-1) ? 1 : 0);
 	}
 };
