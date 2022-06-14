@@ -2,7 +2,7 @@
     // B R U T E
     class Solution {
     public:
-        vector<int> canSeePersonsCount(vector<int>& heights) {
+        vector<int> canSeePersonsCount(vector<int> &heights) {
             int n = (int)heights.size();
             vector<int> ans(n, 1);
             int currMax = 0;
@@ -22,10 +22,10 @@
 */
 
 /*
-    // Optimised
+    // O P T I M I S E D
     class Solution {
     public:
-        vector<int> canSeePersonsCount(vector<int>& heights) {
+        vector<int> canSeePersonsCount(vector<int> &heights) {
             int n = (int)heights.size();
             vector<int> ans(n), stack;
             for (int i = 0; i < n; ++i) {
@@ -46,12 +46,13 @@
 
 class Solution {
 public:
-    vector<int> canSeePersonsCount(vector<int>& heights) {
+    vector<int> canSeePersonsCount(vector<int> &heights) {
         vector<int> mono;
         for (int i = heights.size() - 1; i >= 0; --i) {
             int h = heights[i], cnt = 0;
-            for (; !mono.empty() && mono.back() < h; ++cnt)
+            for (; !mono.empty() && mono.back() < h; ++cnt) {
                 mono.pop_back();
+            }
             heights[i] = cnt + !mono.empty();
             mono.push_back(h);
         }
