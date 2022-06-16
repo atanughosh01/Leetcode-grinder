@@ -6,66 +6,52 @@ using namespace std;
  // } Driver Code Ends
 
 
-class Solution{
-    public:
-    int findSubString(string s)
-    {
-        // Your code goes here   
+
+// Problem : https://practice.geeksforgeeks.org/problems/smallest-distant-window3132/1
+
+
+
+class Solution {
+   public:
+    int findSubString(string s) {
         unordered_map<char, int> mp;
         int n = s.size();
-        
-        for(int i=0; i<n; i++)
-        {
-            if(mp.find(s[i]) == mp.end())
-            {
+        for (int i = 0; i < n; i++) {
+            if (mp.find(s[i]) == mp.end()) {
                 mp[s[i]] = 0;
             }
         }
-        
-        int i=0, j=0, count=0, min_dis=INT_MAX;
-        
-        while(j<n)
-        {
-            if(j<n and count!=mp.size())
-            {
+        int i = 0, j = 0, count = 0, min_dis = INT_MAX;
+        while (j < n) {
+            if (j < n and count != mp.size()) {
                 mp[s[j]]++;
-                if(mp[s[j]] == 1)
-                {
-                    count++;
-                }
+                if (mp[s[j]] == 1) count++;
                 j++;
-            }
-            else if(count == mp.size())
-            {
-                while(i<j && count == mp.size())
-                {
+            } else if (count == mp.size()) {
+                while (i < j && count == mp.size()) {
                     mp[s[i]]--;
-                    if(mp[s[i]] == 0)
-                    {
+                    if (mp[s[i]] == 0) {
                         count--;
-                        min_dis = min(min_dis, j-i);
+                        min_dis = min(min_dis, j - i);
                     }
                     i++;
                 }
             }
         }
-        
-        while(i<j && count == mp.size())
-        {
+        while (i < j && count == mp.size()) {
             mp[s[i]]--;
-            if(mp[s[i]] == 0)
-            {
+            if (mp[s[i]] == 0) {
                 count--;
-                min_dis = min(min_dis, j-i);
+                min_dis = min(min_dis, j - i);
             }
             i++;
         }
-        
-        
-        
         return min_dis;
     }
 };
+
+
+
 
 // { Driver Code Starts.
 // Driver code
