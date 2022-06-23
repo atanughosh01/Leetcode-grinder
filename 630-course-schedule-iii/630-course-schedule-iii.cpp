@@ -7,16 +7,16 @@ public:
     int scheduleCourse(vector<vector<int>> &courses) {
         if (courses.size() <= 0) return 0;
         sort(courses.begin(), courses.end(), cmp);
-        priority_queue<int> q;
+        priority_queue<int> pq;
         int sum = 0;
-        for (auto i : courses) {
-            sum += i[0];
-            q.push(i[0]);
-            if (sum > i[1]) {
-                sum -= q.top();
-                q.pop();
+        for (auto course : courses) {
+            sum += course[0];
+            pq.push(course[0]);
+            if (sum > course[1]) {
+                sum -= pq.top();
+                pq.pop();
             }
         }
-        return q.size();
+        return (int)(pq.size());
     }
 };
