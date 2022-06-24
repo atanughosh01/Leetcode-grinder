@@ -1,4 +1,5 @@
 #define ll long long
+
 class Solution {
 public:
     bool isPossible(vector<int> &target) {
