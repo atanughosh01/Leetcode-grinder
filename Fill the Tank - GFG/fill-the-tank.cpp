@@ -13,7 +13,7 @@ using namespace std;
 
 class Solution {
 private:
-    long long tmp = 1e18;
+    const long long tmp = 1e18;
     bool p = false;
     long long dfs(int curr, vector<vector<long long>> &adj, vector<bool> &vis, int *cap) {
         vis[curr] = true;
