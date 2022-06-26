@@ -65,7 +65,7 @@ using namespace std;
 
 
 
-// TC : O(n), SC : O(n)
+// TC : O(n), SC : O(n), n = size of arr
 class Solution {
 public:
     int countDistinctSubarray(int *arr, int n) {
