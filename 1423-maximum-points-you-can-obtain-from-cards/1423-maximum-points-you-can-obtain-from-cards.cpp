@@ -30,7 +30,7 @@ public:
         for (int i = 0; i < n; i++) {
             preSumFromStart[i + 1] = preSumFromStart[i] + cardPoints[i];
         }
-        for (int i = n - 1; i > 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             preSumFromBack[i] = preSumFromBack[i + 1] + cardPoints[i];
         }
         reverse(preSumFromBack.begin(), preSumFromBack.end());
