@@ -10,11 +10,24 @@ using namespace std;
 
 
 
+/*
+    class Solution{
+    public:
+        long long sumBetweenTwoKth(long long *A, long long N, long long K1, long long K2) {
+            sort(A, A + N);
+            return accumulate(A + K1, A + K2 - 1, 0);
+        }
+    };
+*/
+
+
 class Solution{
 public:
     long long sumBetweenTwoKth(long long *A, long long N, long long K1, long long K2) {
-        sort(A, A + N);
-        return accumulate(A + K1, A + K2 - 1, 0);
+        partial_sort(A, A + K2 - 1, A + N) ;
+        long long ans = 0 ;
+        for(int i = K1; i < K2 - 1; i++) ans += A[i] ;
+        return ans;
     }
 };
 
