@@ -42,13 +42,14 @@ using namespace std;
 */
 
 
+
 typedef vector<vector<long long>> matrix;
 typedef long long ll;
 const int MOD = 1e9 + 7;
 
 class Solution {
    public:
-    matrix mulMat(matrix a, matrix b) {
+    matrix mulMat(matrix &a, matrix &b) {
         matrix ans(2, vector<long long>(2, 0));
         int size = a.size();
         for (int i = 0; i < a.size(); ++i) {
@@ -61,7 +62,7 @@ class Solution {
         return ans;
     }
 
-    matrix matExp(matrix poweredBase, ll n) {
+    matrix matExp(matrix &poweredBase, ll n) {
         if (n == 1) return poweredBase;
         ll half = n / 2;
         matrix ans(2, vector<long long>(2, 0));
@@ -75,7 +76,7 @@ class Solution {
         }
     }
 
-    int FindNthTerm(long long n) {
+    int FindNthTerm(long long int n) {
         if (n == 0) return 1;
         if (n == 1) return 1;
         matrix base(2, vector<long long>(2, 0));
@@ -90,6 +91,7 @@ class Solution {
         return result[0][0];
     }
 };
+
 
 
 
