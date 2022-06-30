@@ -4,9 +4,24 @@
         int minMoves2(vector<int> &nums) {
             int n = (int)(nums.size()), ans = 0;
             sort(nums.begin(), nums.end());
-            int tar = nums[n/2];
+            int median = nums[n/2];
             for (int num : nums) {
-                ans += abs(tar - num);
+                ans += abs(median - num);
+            }
+            return ans;
+        }
+    };
+*/
+
+
+/*
+    class Solution {
+    public:
+        int minMoves2(vector<int> &nums) {
+            int n = (int)(nums.size()), ans = 0;
+            sort(nums.begin(), nums.end());
+            for (int i = 0; i < n/2; i++){
+                ans += nums[n-1-i] - nums[i];
             }
             return ans;
         }
@@ -16,11 +31,12 @@
 
 class Solution {
 public:
-    int minMoves2(vector<int> &nums) {
+    int minMoves2(vector<int>& nums) {
         int n = (int)(nums.size()), ans = 0;
-        sort(nums.begin(), nums.end());
-        for (int i = 0; i < n/2; i++){
-            ans += nums[n-1-i] - nums[i];
+        nth_element(nums.begin(), nums.begin() + (n/2), nums.end());
+        int median = nums[n / 2];
+        for (int i = 0; i < n; i++){
+            ans += abs(median - nums[i]);
         }
         return ans;
     }
