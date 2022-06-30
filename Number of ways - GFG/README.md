@@ -8,7 +8,8 @@
 
 <pre><span style="font-size:18px"><strong>Input:</strong> N = 1
 <strong>Output:</strong> 1
-<strong>Explaination:</strong> There is only one way.</span></pre>
+<strong>Explaination:</strong> We can arrange the tiles horizontally 
+and this is the only way.</span></pre>
 
 <p><br>
 <strong><span style="font-size:18px">Example 2:</span></strong></p>
