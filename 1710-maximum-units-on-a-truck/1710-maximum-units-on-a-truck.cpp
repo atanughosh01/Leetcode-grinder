@@ -1,21 +1,17 @@
 class Solution {
+private:
+    static bool cmp(const vector<int> &a, const vector<int> &b) {
+        return a[1] > b[1];
+    }
 public:
-    int maximumUnits(vector<vector<int>> &boxes, int truckSize) {
-        int res = 0, sizeBucket[1001] = {};
-        int maxBucket = INT_MIN, minBucket = INT_MAX;
-        for (auto &boxType: boxes) {
-            maxBucket = max(maxBucket, boxType[1]);
-            minBucket = min(minBucket, boxType[1]);
-            sizeBucket[boxType[1]] += boxType[0];
+    int maximumUnits(vector<vector<int>> &boxTypes, int truckSize) {
+        int n = (int)(boxTypes.size()), ans  = 0;
+        sort(boxTypes.begin(), boxTypes.end(), cmp);
+        for (int i = 0; i < n && truckSize > 0; i++) {
+            int countOfBoxes = min(boxTypes[i][0], truckSize);
+            ans += boxTypes[i][1] * countOfBoxes;
+            truckSize -= countOfBoxes;
         }
-        for (int i = maxBucket; i >= minBucket; i--) {
-            int size = sizeBucket[i];
-            if (!size) continue;
-            int currBatch = min(size, truckSize);
-            truckSize -= currBatch;
-            res += currBatch * i;
-            if (!truckSize) break;
-        }
-        return res;
+        return ans;
     }
 };
