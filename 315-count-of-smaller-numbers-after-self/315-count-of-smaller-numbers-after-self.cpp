@@ -1,23 +1,22 @@
-/*
-    class Solution {
-    public:
-        vector<int> countSmaller(vector<int> &nums) {
-            int n = (int)(nums.size());
-            vector<int> res(n, 0);
-            for (int i = 0; i < n; i++) {
-                for (int j = i + 1; j < n; j++) {
-                    if (nums[j] < nums[i]) {
-                        res[i]++;
-                    }
+class Solution_1 {
+public:
+    vector<int> countSmaller(vector<int> &nums) {
+        int n = (int)(nums.size());
+        vector<int> res(n, 0);
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[j] < nums[i]) {
+                    res[i]++;
                 }
             }
-            return res;
         }
-    };
-*/
+        return res;
+    }
+};
 
 
-class Solution {
+
+class Solution_2 {
 private:
     void mergeSort(int start, int end, vector<pair<int, int>> &numPairs, vector<int> &indices, vector<pair<int, int>> &temp) {
         if (start >= end) return;
@@ -69,5 +68,47 @@ public:
 
         mergeSort(0, n - 1, pairs, res, temp);
         return res;
+    }
+};
+
+
+
+class Solution {
+public:
+    // TIME COMPLEXITY:- O(N*LOGM), N = NUMS.SIZE(), M = 2e4 + 5, BIT Update
+    void update(int val, vector<int> &BIT) {
+        while (val <= BIT.size()) {
+            BIT[val]++;
+            val += val & -val;  // next element (child) obtained by incrementing
+                                // the last set bit of the current index
+        }
+    }
+
+    // flip the last set bit of ind & -(ind), BIT answer (get sum, parent to back)
+    int answer(int val, vector<int> &BIT) {
+        int ans = 0;
+        while (val > 0) {
+            ans += BIT[val];  // sum of frequency of elements smaller than already seen (loop is running back)
+            val -= (val & -val);  // previous element (parent) is obtained by removing the last set bit from current index
+        }
+        return ans;
+    }
+
+    vector<int> countSmaller(vector<int> &nums) {
+        vector<int> ans(nums.size(), 0);
+        vector<int> BIT(20005, 0);  // Binary Indexed Tree Array, 2*max_size+5 (safety)
+
+        // offset
+        for (int i = 0; i < nums.size(); i++) {
+            // Make all Numbers positive (for our problem, translation does not affect the smallest count)
+            nums[i] += 10001;
+        }
+
+        // iterate from the end (in this way elements to the right will be visited first)
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            ans[i] = answer(nums[i] - 1, BIT);  // get answer, nums[i]-1 (index here) because we need strictly smaller
+            update(nums[i], BIT);
+        }
+        return ans;
     }
 };
