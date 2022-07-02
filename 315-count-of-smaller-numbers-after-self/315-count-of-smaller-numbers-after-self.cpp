@@ -73,7 +73,7 @@ public:
 
 
 
-class Solution {
+class Solution_3 {
 public:
     // TIME COMPLEXITY:- O(N*LOGM), N = NUMS.SIZE(), M = 2e4 + 5, BIT Update
     void update(int val, vector<int> &BIT) {
@@ -108,6 +108,43 @@ public:
         for (int i = nums.size() - 1; i >= 0; i--) {
             ans[i] = answer(nums[i] - 1, BIT);  // get answer, nums[i]-1 (index here) because we need strictly smaller
             update(nums[i], BIT);
+        }
+        return ans;
+    }
+};
+
+
+
+class Solution {
+private:
+    int C[20002], MAX = 20001, MIN = 10001;
+    int sum(int x) {
+        int ret = 0;
+        while (x > 0) {
+            ret += C[x];
+            x -= x & (-x);
+        }
+        return ret;
+    }
+    void add(int x, int d) {
+        while (x <= MAX) {
+            C[x] += d;
+            x += x & (-x);
+        }
+    }
+public:
+    vector<int> countSmaller(vector<int> &nums) {
+        vector<int> ans;
+        memset(C, 0, sizeof(C));
+        int n = nums.size();
+        for (int i = n - 1; i >= 0; i--) {
+            nums[i] += MIN;
+            int small = sum(nums[i] - 1);
+            ans.push_back(small);
+            add(nums[i], 1);
+        }
+        for (int i = 0; i < n / 2; i++) {
+            swap(ans[i], ans[n - 1 - i]);
         }
         return ans;
     }
