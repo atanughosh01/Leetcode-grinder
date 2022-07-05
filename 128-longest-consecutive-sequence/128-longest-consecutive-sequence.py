@@ -1,5 +1,5 @@
 class Solution:
-    def longestConsecutive(self, nums: List[int]) -> int:
+    def longestConsecutive_1(self, nums: List[int]) -> int:
         nums.sort()
         longest, cur_longest = 0, min(1, len(nums))
         for i in range(1, len(nums)):
@@ -7,4 +7,18 @@ class Solution:
             if nums[i] == nums[i - 1] + 1: cur_longest += 1
             else: longest, cur_longest = max(longest, cur_longest), 1
         return max(longest, cur_longest)
+    
+    def longestConsecutive(self, nums: List[int]) -> int:
+        longest, s = 0, set(nums)
+        for num in nums:
+            cur_longest, j = 1, 1
+            while num - j in s: 
+                s.remove(num - j)
+                cur_longest, j = cur_longest + 1, j + 1
+            j = 1
+            while num + j in s: 
+                s.remove(num + j)
+                cur_longest, j = cur_longest + 1, j + 1
+            longest = max(longest, cur_longest)
+        return longest
         
