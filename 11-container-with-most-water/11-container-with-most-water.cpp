@@ -1,19 +1,18 @@
-/*
-    class Solution {
-    public:
-        int maxArea(vector<int> &height) {
-            int n = (int)height.size();
-            int ans = INT_MIN;
-            for (int i=0; i<n; i++) {
-                for (int j=0; j!=i, j<n; j++) {
-                    int A = abs(i-j) * min(height[i], height[j]);
-                    ans = max(ans, A);
-                }
+class Solution_1 {
+public:
+    int maxArea(vector<int> &height) {
+        int n = (int)height.size();
+        int ans = INT_MIN;
+        for (int i=0; i<n; i++) {
+            for (int j=0; j!=i, j<n; j++) {
+                int A = abs(i-j) * min(height[i], height[j]);
+                ans = max(ans, A);
             }
-            return ans;
         }
-    };
-*/
+        return ans;
+    }
+};
+
 
 
 class Solution {
