@@ -7,7 +7,8 @@ public:
 };
 
 
-class Solution {
+
+class Solution_2 {
 public:
     int fib(int n) {
         if (n <= 1) return n;
@@ -18,5 +19,21 @@ public:
             prev1 = cur;
         }
         return cur;
+    }
+};
+
+
+
+class Solution {
+public:
+    int fib(int n) {
+        double ratio = (sqrt(5) + 1) / 2;
+        double uptopowers = 1;
+        while (n > 0) {
+            if (n & 1) uptopowers *= ratio;
+            ratio *= ratio;
+            n >>= 1;
+        }
+        return round(uptopowers/sqrt(5));
     }
 };
