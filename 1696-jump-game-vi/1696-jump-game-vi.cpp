@@ -1,3 +1,4 @@
+// TLE
 class Solution_1 {
 public:
     int maxResult(vector<int> &nums, int k, int i = 0) {
@@ -12,6 +13,7 @@ public:
 
 
 
+// TLE
 class Solution_2 {
 private:
     int solve(vector<int> &nums, vector<int> &dp, int k, int i) {
@@ -33,6 +35,7 @@ public:
 
 
 
+// TLE
 class Solution_3 {
 public:
     int maxResult(vector<int> &nums, int k) {
@@ -49,7 +52,7 @@ public:
 
 
 
-class Solution {
+class Solution_4 {
 public:
     int maxResult(vector<int> &nums, int k) {
         vector<int> dp(nums.size(), INT_MIN);
@@ -57,6 +60,26 @@ public:
         for (int i = 1; i < size(nums); i++) {
             if (i > k) s.erase(s.find(dp[i - k - 1]));
             s.insert(dp[i] = *rbegin(s) + nums[i]);
+        }
+        return dp.back();
+    }
+};
+
+
+
+class Solution {
+public:
+    int maxResult(vector<int> &nums, int k) {
+        vector<int> dp(size(nums));
+        dp[0] = nums[0];
+        deque<int> q{0};
+        for (int i = 1; i < nums.size(); i++) {
+            if (q.front() < i - k) q.pop_front();
+            dp[i] = nums[i] + dp[q.front()];
+            while (!q.empty() && dp[q.back()] <= dp[i]) {
+                q.pop_back();
+            }
+            q.push_back(i);
         }
         return dp.back();
     }
