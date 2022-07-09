@@ -70,7 +70,7 @@ public:
 class Solution {
 public:
     int maxResult(vector<int> &nums, int k) {
-        vector<int> dp(size(nums));
+        vector<int> dp(nums.size());
         dp[0] = nums[0];
         deque<int> q{0};
         for (int i = 1; i < nums.size(); i++) {
