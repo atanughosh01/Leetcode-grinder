@@ -1,9 +1,10 @@
-class Solution {
+// TC = O(NlogN), SC = O(1)
+class Solution_1 {
 public:
     int longestConsecutive(vector<int> &nums) {
         int n = (int)(nums.size());
         if (n <= 1) return n;
-        int max_len = 1, cur_len = min(1, n);
+        int max_len = 1, cur_len = 1;
         sort(nums.begin(), nums.end());
         for (int i = 1; i < n; i++) {
             if (nums[i] == nums[i - 1]) continue;
@@ -14,5 +15,34 @@ public:
             }
         }
         return max(max_len, cur_len);
+    }
+};
+
+
+
+// TC = O(N), SC = O(N)
+class Solution {
+public:
+    int longestConsecutive(vector<int> &nums) {
+        int n = (int)(nums.size());
+        if (n <= 1) return n;
+        unordered_map<int, int> mp;
+        int max_len = 1;
+        for (int &num : nums) mp[num] = 1;
+        for (int &num : nums) {
+            if (mp.find(num - 1) != mp.end()) {
+                mp[num] = 0;
+            }
+        }
+        for (int &num : nums) {
+            if (mp[num] == 1) {
+                int cur_len = 1;
+                while (mp.find(num + cur_len) != mp.end()) {
+                    cur_len++;
+                }
+                max_len = max(max_len, cur_len);
+            }
+        }
+        return max_len;
     }
 };
