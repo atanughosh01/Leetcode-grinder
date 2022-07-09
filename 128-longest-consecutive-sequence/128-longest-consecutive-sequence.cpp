@@ -50,7 +50,7 @@ public:
 
 
 // TC = O(N), SC = O(N)
-class Solution {
+class Solution_3 {
 public:
     int longestConsecutive(vector<int> &nums) {
         int n = (int)(nums.size());
@@ -61,6 +61,32 @@ public:
         for (int &num : nums) {
             if (st.find(num - 1) == st.end()) {
                 int cur_num = num;
+                int cur_len = 1;
+                while (st.find(cur_num + 1) != st.end()) {
+                    cur_num++;
+                    cur_len++;
+                }
+                max_len = max(max_len, cur_len);
+            }
+        }
+        return max_len;
+    }
+};
+
+
+
+// TC = O(N), SC = O(N) but slightly more optimised
+class Solution {
+public:
+    int longestConsecutive(vector<int> &nums) {
+        int n = (int)(nums.size());
+        if (n <= 1) return n;
+        unordered_set<int> st;
+        int max_len = 1;
+        for (int &num : nums) st.insert(num);
+        for (auto &itr : st) {
+            if (st.find(itr - 1) == st.end()) {
+                int cur_num = itr;
                 int cur_len = 1;
                 while (st.find(cur_num + 1) != st.end()) {
                     cur_num++;
