@@ -14,10 +14,10 @@ public:
 
 
 
-class Solution {
+class Solution_2 {
 public:
     int numEquivDominoPairs(vector<vector<int>> &dom) {
-        int n = (int)(dom.size()), cnt = 0;
+        int cnt = 0;
         map<pair<int, int>, int> mp;
         for (vector<int> &d : dom) {
             if (d[0] > d[1]) {
@@ -27,6 +27,22 @@ public:
         }
         for (auto &[key, value] : mp) {
             cnt += value*(value - 1) / 2;
+        }
+        return cnt;
+    }
+};
+
+
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>> &dom) {
+        int cnt = 0;
+        map<pair<int, int>, int> mp;
+        for (vector<int> &d : dom) {
+            if (d[0] > d[1]) {
+                swap(d[0], d[1]);
+            }
+            cnt += mp[make_pair(d[0], d[1])]++;
         }
         return cnt;
     }
