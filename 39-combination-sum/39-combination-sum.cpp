@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+    vector<vector<int>> combinationSum(vector<int> &nums, int target) {
         vector<vector<vector<int>>> dp(target+1);
         dp[0] = {{}};
         for (int &i : nums) {
