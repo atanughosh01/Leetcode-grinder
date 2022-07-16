@@ -14,8 +14,7 @@ private:
     }
 public:
     int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
-        this->m = m;
-        this->n = n;
+        this->m = m, this->n = n;
         memset(memo, -1, sizeof(memo));
         return dp(startRow, startColumn, maxMove);
     }
