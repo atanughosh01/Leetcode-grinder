@@ -27,12 +27,51 @@ public:
             pre[i] = pre[i - 1] + nums[i];
         }
         unordered_map<int, int> mp;
+        mp[0]++;
         for (int i = 0; i < n; i++) {
-            if (pre[i] == k) res++;
-            if (mp.find(pre[i] - k) != mp.end()) {
-                res += mp[pre[i] - k];
-            }
+            res += mp[pre[i] - k];
             mp[pre[i]]++;
+        }
+        return res;
+    }
+};
+
+
+
+class Solution_2 {
+public:
+    int subarraySum(vector<int> &nums, int k) {
+        int sum = 0, res = 0;
+        unordered_map<int,int> mp;
+        mp[0]++;
+        for (int &num : nums) {
+            sum += num;
+            res += mp[sum - k];
+            mp[sum]++;
+        }
+        return res;
+    }
+};
+
+
+
+class Solution_3 {
+public:
+    int subarraySum(vector<int> &nums, int k) {
+        int n = (int)(nums.size());
+        int l = 0, r = 0, sum = 0, res = 0;
+        while (r < n && l < n) {
+            sum += nums[r];
+            if (sum == k) {
+                res++;
+                r++;
+            } else if (sum < k) {
+                r++;
+            } else if (sum > k) {
+                sum -= nums[l];
+                l++;
+                sum -= nums[r];
+            }
         }
         return res;
     }
