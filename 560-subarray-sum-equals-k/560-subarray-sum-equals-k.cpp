@@ -1,3 +1,4 @@
+// O(N^2) time, O(1) space
 class Solution_1 {
 public:
     int subarraySum(vector<int> &nums, int k) {
@@ -16,8 +17,8 @@ public:
 };
 
 
-
-class Solution {
+// O(N) time, O(N) space
+class Solution_2 {
 public:
     int subarraySum(vector<int> &nums, int k) {
         int n = (int)(nums.size());
@@ -37,8 +38,8 @@ public:
 };
 
 
-
-class Solution_2 {
+// O(N) time, O(N) space, but better
+class Solution {
 public:
     int subarraySum(vector<int> &nums, int k) {
         int sum = 0, res = 0;
@@ -54,7 +55,8 @@ public:
 };
 
 
-
+// This solution (actually not a solution) would be the best if all the numbers were non-negetive
+// O(N) time, O(1) space, sliding window
 class Solution_3 {
 public:
     int subarraySum(vector<int> &nums, int k) {
