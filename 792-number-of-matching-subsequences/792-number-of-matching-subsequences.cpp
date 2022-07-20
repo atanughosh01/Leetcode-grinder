@@ -25,7 +25,7 @@ public:
 
 
 
-class Solution {
+class Solution_2 {
 public:
     int numMatchingSubseq(string str, vector<string> &words) {
         int res = 0;
@@ -42,6 +42,35 @@ public:
                 latest = *it;
                 if (j == curr.size() - 1) res++;
             }
+        }
+        return res;
+    }
+};
+
+
+
+
+
+class Solution {
+public:
+    int numMatchingSubseq(string str, vector<string> &words) {
+        int res = 0;
+        unordered_map<char, vector<int>> mp;
+        for (int i = 0; i < str.size(); i++) {
+            mp[str[i]].push_back(i);
+        }
+        for (string &word : words) {
+            int latest = -1;
+            bool found = true;
+            for (char &c : word) {
+                auto it = upper_bound(mp[c].begin(), mp[c].end(), latest);
+                if (it == mp[c].end()) {
+                    found = false;
+                    break;
+                }
+                latest = *it;
+            }
+            if (found) res++;
         }
         return res;
     }
