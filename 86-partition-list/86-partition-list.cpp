@@ -10,7 +10,7 @@
  */
 
 
-class Solution {
+class Solution_1 {
 public:
     ListNode *partition(ListNode *head, int x) {
         ListNode node1(0), node2(0);
@@ -26,5 +26,31 @@ public:
         p2->next = NULL;
         p1->next = node2.next;
         return node1.next;
+    }
+};
+
+
+
+
+class Solution {
+public:
+    ListNode* partition(ListNode *head, int x) {
+        ListNode *left = new ListNode(0);
+        ListNode *right = new ListNode(0);
+        ListNode *leftTail = left;
+        ListNode *rightTail = right;
+        while (head) {
+            if (head->val < x) {
+                leftTail->next = head;
+                leftTail = leftTail->next;
+            } else {
+                rightTail->next = head;
+                rightTail = rightTail->next;
+            }
+            head = head->next;
+        }
+        leftTail->next = right->next;
+        rightTail->next = NULL;
+        return left->next;
     }
 };
