@@ -75,38 +75,52 @@ public:
 
 class Solution_3 {
 public:
-    // TIME COMPLEXITY:- O(N*LOGM), N = NUMS.SIZE(), M = 2e4 + 5, BIT Update
+    // TIME COMPLEXITY:- O(N*LOGM),
+    // N = NUMS.SIZE(), M = 2e4 + 5, BIT Update
     void update(int val, vector<int> &BIT) {
         while (val <= BIT.size()) {
             BIT[val]++;
-            val += val & -val;  // next element (child) obtained by incrementing
-                                // the last set bit of the current index
+            // next element (child) obtained by incrementing
+            // the last set bit of the current index
+            val += val & -val;
         }
     }
 
-    // flip the last set bit of ind & -(ind), BIT answer (get sum, parent to back)
+    // flip the last set bit of ind & -(ind),
+    // BIT answer (get sum, parent to back)
     int answer(int val, vector<int> &BIT) {
         int ans = 0;
         while (val > 0) {
-            ans += BIT[val];  // sum of frequency of elements smaller than already seen (loop is running back)
-            val -= (val & -val);  // previous element (parent) is obtained by removing the last set bit from current index
+            // sum of frequency of elements smaller than 
+            // already seen (loop is running back)
+            ans += BIT[val];
+
+            // previous element (parent) is obtained by
+            // removing the last set bit from current index
+            val -= (val & -val);
         }
         return ans;
     }
 
     vector<int> countSmaller(vector<int> &nums) {
         vector<int> ans(nums.size(), 0);
-        vector<int> BIT(20005, 0);  // Binary Indexed Tree Array, 2*max_size+5 (safety)
+        
+        // Binary Indexed Tree Array, 2*max_size+5 (safety)
+        vector<int> BIT(20005, 0);
 
         // offset
         for (int i = 0; i < nums.size(); i++) {
-            // Make all Numbers positive (for our problem, translation does not affect the smallest count)
+            // Make all Numbers positive (for our problem
+            // translation does not affect the smallest count)
             nums[i] += 10001;
         }
 
-        // iterate from the end (in this way elements to the right will be visited first)
+        // iterate from the end (in this way elements
+        // to the right will be visited first)
         for (int i = nums.size() - 1; i >= 0; i--) {
-            ans[i] = answer(nums[i] - 1, BIT);  // get answer, nums[i]-1 (index here) because we need strictly smaller
+            // get answer, nums[i]-1 (index here)
+            // because we need strictly smaller
+            ans[i] = answer(nums[i] - 1, BIT);
             update(nums[i], BIT);
         }
         return ans;
@@ -117,7 +131,8 @@ public:
 
 class Solution {
 private:
-    int C[20002], MAX = 20001, MIN = 10001;
+    int C[20002];
+    int MAX = 20001, MIN = 10001;
     int sum(int x) {
         int ret = 0;
         while (x > 0) {
