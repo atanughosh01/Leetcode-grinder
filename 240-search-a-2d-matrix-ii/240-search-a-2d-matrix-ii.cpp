@@ -39,7 +39,7 @@ public:
 
 
 // TC : O(log(m+n)), SC: O(1)
-class Solution {
+class Solution_3 {
 public:
     bool searchMatrix(vector<vector<int>> &matrix, int target) {
         int row = 0, col = matrix[0].size() - 1;
@@ -47,6 +47,22 @@ public:
             if (target == matrix[row][col]) return true;
             else if (target < matrix[row][col]) col--;
             else if (target > matrix[row][col]) row++;
+        }
+        return false;
+    }
+};
+
+
+
+// TC : O(log(m+n)), SC: O(1) but slightly more optimized
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>> &matrix, int target) {
+        int row = 0, col = matrix[0].size() - 1;
+        while (col >= 0 && row <= matrix.size() - 1) {
+            if (target < matrix[row][col]) col--;
+            else if (target > matrix[row][col]) row++;
+            else return true;
         }
         return false;
     }
