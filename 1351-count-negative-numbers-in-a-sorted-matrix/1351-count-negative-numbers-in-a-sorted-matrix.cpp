@@ -2,21 +2,21 @@
 class Solution_1 {
 public:
     int countNegatives(vector<vector<int>> &grid) {
-        int count = 0, n = grid[0].size();
+        int res = 0, n = grid[0].size();
         for (vector<int> &arr : grid) {
             for (int i = n - 1; i >= 0; i--) {
-                if (arr[i] < 0)  count++;
+                if (arr[i] < 0) res++;
                 else break;
             }
         }
-        return count;
+        return res;
     }
 };
 
 
 
 // TC : O(m*log(n)), SC : O(1)
-class Solution {
+class Solution_2 {
 private:
     int binarySearch(vector<int> &arr, int l, int r) {
         if (arr.size() == 1 && arr[0] < 0) {
@@ -39,11 +39,29 @@ private:
     }
 public:
     int countNegatives(vector<vector<int>> &grid) {
-        int count = 0, n = grid[0].size();
+        int res = 0, n = grid[0].size();
         for (vector<int> &vec : grid) {
             int nonNeg = binarySearch(vec, 0, vec.size()-1);
-            count += (n - nonNeg - 1);
+            res += (n - nonNeg - 1);
         }
-        return count;
+        return res;
+    }
+};
+
+
+
+// TC : O(m + n), SC : O(1)
+class Solution {
+public:
+    int countNegatives(vector<vector<int>> &grid) {
+        int m = grid.size(), n = grid[0].size();
+        int res = 0, l = 0, r = n - 1;
+        while (l < m && r >= 0) {
+            if (grid[l][r] < 0) {
+                res += (m - l);
+                r--;
+            } else l++;
+        }
+        return res;
     }
 };
