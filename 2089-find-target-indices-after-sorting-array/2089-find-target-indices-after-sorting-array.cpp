@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 public:
     vector<int> targetIndices(vector<int> &nums, int target) {
         vector<int> res;
@@ -14,25 +14,18 @@ public:
 
 
 
-class Solution_2 {
+class Solution {
 public:
     vector<int> targetIndices(vector<int> &nums, int target) {
-        int l = 0, r = nums.size() - 1;
-        sort(nums.begin(), nums.end());
         vector<int> res;
-        while (l < r) {
-            int mid = l + (r - l) / 2;
-            if (nums[mid] == target) {
-                cout << mid << " ";
-                res.push_back(mid);
-                l++;
-            } else if (nums[mid] > target) {
-                r = mid;
-            } else {
-                l = mid + 1;
-            }
+        int count = 0, rank = 0;
+        for (int &num : nums) {
+            count += (num == target);
+            rank += (num < target);
         }
-        cout << "\n";
+        while (count--) {
+            res.push_back(rank++);
+        }
         return res;
     }
 };
