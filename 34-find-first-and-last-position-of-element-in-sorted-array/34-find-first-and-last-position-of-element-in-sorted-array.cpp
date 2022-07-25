@@ -1,4 +1,5 @@
-class Solution {
+// TC: O(N), SC: O(1), linear search
+class Solution_1 {
 public:
     vector<int> searchRange(vector<int> &nums, int target) {
         int n = (int)(nums.size());
@@ -14,6 +15,34 @@ public:
                 break;
             }
         }
+        return {first, last};
+    }
+};
+
+
+
+// TC: O(log(N)), SC: O(1), binary search
+class Solution {
+public:
+    vector<int> searchRange(vector<int> &nums, int target) {
+        int n = (int)(nums.size());
+        if (n == 0) return {-1, -1};
+        int l = 0, r = n - 1;
+        int first = -1, last = -1;
+        while (l < r) {
+            int mid = l + (r - l)/2;
+            if (nums[mid] < target) l = mid + 1;
+            else r = mid;
+        }
+        if (nums[l] != target) return {-1, -1};
+        else first = l;
+        r = n - 1;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid + 1] > target) r = mid;
+            else l = mid + 1;
+        }
+        last = r;
         return {first, last};
     }
 };
