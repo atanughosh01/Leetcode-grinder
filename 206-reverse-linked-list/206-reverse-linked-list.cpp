@@ -10,18 +10,38 @@
  */
 
 
-class Solution {
+// Iterative (better bcz no stack space is needed for recursive call)
+class Solution_1 {
 public:
     ListNode *reverseList(ListNode *head) {
-        ListNode *headNode = head;
+        ListNode *currHead = head;
         ListNode *newHead = nullptr;
         ListNode *nextNode = nullptr;
-        while (headNode != nullptr) {
-            nextNode = headNode->next;
-            headNode->next = newHead;
-            newHead = headNode;
-            headNode = nextNode;
+        while (currHead != nullptr) {
+            nextNode = currHead->next;
+            currHead->next = newHead;
+            newHead = currHead;
+            currHead = nextNode;
         }
         return newHead;
+    }
+};
+
+
+
+// Recursive solution
+class Solution {
+private:
+    ListNode *reverse(ListNode *headNode) {
+        if (headNode->next == nullptr) return headNode;
+        ListNode *reverseHead = reverse(headNode->next);
+        headNode->next->next = headNode;
+        headNode->next = nullptr;
+        return reverseHead;
+    }
+public:
+    ListNode *reverseList(ListNode *head) {
+        if (!head) return nullptr;
+        return reverse(head);
     }
 };
