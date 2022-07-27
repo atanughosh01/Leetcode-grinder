@@ -20,7 +20,7 @@ private:
 	}
 
 public:
-	MyHashMap() : prime(1000000), table(prime) {}
+	MyHashMap() : prime(100000), table(prime) {}
 
 	void put(int key, int value) {
 		int h = hash(key);
