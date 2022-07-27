@@ -44,7 +44,7 @@ private:
         return find(table[h].begin(), table[h].end(), key);
     }
 public:
-    MyHashSet() : prime(1000), table(prime) {}
+    MyHashSet() : prime(100), table(prime) {}
     
     void add(int key) {
         int h = hash(key);
