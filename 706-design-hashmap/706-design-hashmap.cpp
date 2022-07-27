@@ -1,18 +1,54 @@
 class MyHashMap {
+private:
+	int prime;
+	vector<list<pair<int, int>>> table;
+
+	int hash(int key) {
+		return key % prime;
+	}
+
+	list<pair<int, int>>::iterator search(int key) {
+		int h = hash(key);
+		auto it = table[h].begin();
+		while (it != table[h].end()) {
+			if (it->first == key) {
+				return it;
+			}
+			it++;
+		}
+		return it;
+	}
+
 public:
-    int data[1000001];
-    MyHashMap() {
-        fill(data, data + 1000000, -1);
-    }
-    void put(int key, int val) {
-        data[key] = val;
-    }
-    int get(int key) {
-        return data[key];
-    }
-    void remove(int key) {
-        data[key] = -1;
-    }
+	MyHashMap() : prime(100000), table(prime) {}
+
+	void put(int key, int value) {
+		int h = hash(key);
+		auto it = search(key);
+		if (it == table[h].end()) {
+			table[h].push_back({key, value});
+		} else {
+			remove(h);
+			table[h].push_back({key, value});
+		}
+	}
+
+	void remove(int key) {
+		int h = hash(key);
+		auto it = search(key);
+		if (it != table[h].end()) {
+			table[h].erase(it);
+		}
+	}
+
+	int get(int key) {
+		int h = hash(key);
+		auto it = search(key);
+		if (it != table[h].end()) {
+			return it->second;
+		}
+		return -1;
+	}
 };
 
 
