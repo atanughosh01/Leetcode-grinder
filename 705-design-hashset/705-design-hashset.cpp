@@ -1,8 +1,9 @@
 class MyHashSet {
 public:
-    vector<bool> hash_table;
+    vector<bool> hash_table = {};
+    int len = 1e6 + 1;
     MyHashSet() {
-        hash_table = vector<bool>(1000001, false);
+        hash_table.resize(len, false);
     }
     
     void add(int key) {
@@ -13,9 +14,8 @@ public:
         hash_table[key] = false;
     }
     
-    /** Returns true if this set contains the specified element */
     bool contains(int key) {
-        return hash_table[key] == true;
+        return hash_table[key];
     }
 };
 
