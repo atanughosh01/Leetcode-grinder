@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 private:
     bool matches(string &w, string &p) {
         if (w.size() != p.size()) return false;
@@ -13,6 +13,42 @@ private:
                 return false;
             }
         }
+        return true;
+    }
+public:
+    vector<string> findAndReplacePattern(vector<string> &words, string &pattern) {
+        vector<string> res{};
+        for (string &word : words) {
+            if (matches(word, pattern)) {
+                res.push_back(word);
+            }
+        }
+        return res;
+    }
+};
+
+
+
+class Solution {
+private:
+    bool matches(string &w, string &p) {
+        if (w.size() != p.size()) return false;
+        char *wp = new char[26]{0};
+        char *pw = new char[26]{0};
+        for (int i = 0; i < w.size(); i++) {
+            if (!wp[w[i] - 'a'] && !pw[p[i] - 'a']) {
+                wp[w[i] - 'a'] = p[i];
+                pw[p[i] - 'a'] = w[i];
+            } else if (wp[w[i]-'a'] == p[i] && pw[p[i]-'a'] == w[i]) {
+                continue;
+            } else {
+                delete [] wp;
+                delete [] pw;
+                return false;
+            }
+        }
+        delete [] wp;
+        delete [] pw;
         return true;
     }
 public:
