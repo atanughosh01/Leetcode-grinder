@@ -29,7 +29,7 @@ public:
 
 
 
-class Solution {
+class Solution_2 {
 private:
     bool matches(string &w, string &p) {
         if (w.size() != p.size()) return false;
@@ -56,6 +56,35 @@ public:
         vector<string> res{};
         for (string &word : words) {
             if (matches(word, pattern)) {
+                res.push_back(word);
+            }
+        }
+        return res;
+    }
+};
+
+
+
+class Solution {
+private:
+    string newPattern(string w) {
+        unordered_map<char, int> m;
+        for (char &c : w) {
+            if (!m.count(c)) {
+                m[c] = m.size();
+            }
+        }
+        for (int i = 0; i < w.size(); ++i) {
+            w[i] = 'a' + m[w[i]];
+        }
+        return w;
+    }
+public:
+    vector<string> findAndReplacePattern(vector<string> &words, string &pattern) {
+        vector<string> res;
+        pattern = newPattern(pattern);
+        for (string &word : words) {
+            if (newPattern(word) == pattern) {
                 res.push_back(word);
             }
         }
