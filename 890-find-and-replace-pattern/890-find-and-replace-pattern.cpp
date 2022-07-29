@@ -3,10 +3,8 @@ private:
     bool matches(string &w, string &p) {
         if (w.size() != p.size()) return false;
         unordered_map<char, char> wp, pw;
-        for (char &c : w) wp[c] = '#';
-        for (char &c : p) pw[c] = '#';
         for (int i = 0; i < w.size(); i++) {
-            if (wp[w[i]] == '#' && pw[p[i]] == '#') {
+            if (!wp.count(w[i]) && !pw.count(p[i])) {
                 wp[w[i]] = p[i];
                 pw[p[i]] = w[i];
             } else if (wp[w[i]] == p[i] && pw[p[i]] == w[i]) {
