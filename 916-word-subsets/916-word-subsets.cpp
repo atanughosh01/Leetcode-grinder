@@ -31,7 +31,7 @@ public:
 
 
 
-
+// TC : O(w1.len + w2.len), SC : O(w1.len)->result array
 class Solution {
 private:
     bool isSubset(int *big, int *small) {
@@ -53,6 +53,7 @@ public:
                 temp[c-'a']++;
                 freq2[c-'a'] = max(freq2[c-'a'], temp[c-'a']);
             }
+            delete [] temp;
         }
         
         for (string &str1 : words1) {
@@ -64,8 +65,10 @@ public:
             if (isSubset(freq1, freq2)) {
                 res.push_back(str1);
             }
+            delete [] freq1;
         }
         
+        delete [] freq2;
         return res;
     }
 };
