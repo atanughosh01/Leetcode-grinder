@@ -12,16 +12,16 @@
 
 class Solution {
 private:
-    void reverseOneGroup(ListNode *left, ListNode *right) {
-        ListNode *newLeft = nullptr;
-        ListNode *currLeft = left;
-        ListNode *nextOfLeft = left->next;
-        while (newLeft != right) {
-            currLeft->next = newLeft;
-            newLeft = currLeft;
-            currLeft = nextOfLeft;
-            if (nextOfLeft != nullptr) {
-                nextOfLeft = nextOfLeft->next;
+    void reverseFirstGroup(ListNode *left, ListNode *right) {
+        ListNode *prv = nullptr;
+        ListNode *cur = left;
+        ListNode *nxt = left->next;
+        while (prv != right) {
+            cur->next = prv;
+            prv = cur;
+            cur = nxt;
+            if (nxt != nullptr) {
+                nxt = nxt->next;
             }
         }
     }
@@ -35,9 +35,9 @@ public:
             end = end->next;
             if (end == nullptr) return head;
         }
-        ListNode *headOfNextGrp = reverseKGroup(end->next, k);
-        reverseOneGroup(start, end);
-        start->next = headOfNextGrp;
+        ListNode *headOfNext = reverseKGroup(end->next, k);
+        reverseFirstGroup(start, end);
+        start->next = headOfNext;
         return end;
     }
 };
