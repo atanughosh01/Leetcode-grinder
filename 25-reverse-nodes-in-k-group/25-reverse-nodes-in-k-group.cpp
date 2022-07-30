@@ -48,7 +48,7 @@ public:
 // Iterative, O(n) time, O(1) space;
 class Solution {
 private:
-    void reverse(ListNode *left, ListNode *right) {
+    void reverseGroup(ListNode *left, ListNode *right) {
         ListNode *prv = nullptr;
         ListNode *cur = left;
         ListNode *nxt = left->next;
@@ -67,7 +67,7 @@ public:
             return head;
         }
 
-        ListNode *dummy = new ListNode(-1);
+        ListNode *dummy = new ListNode(0);
         dummy->next = head;
 
         ListNode *preStart = dummy, *postEnd = head;
@@ -81,7 +81,7 @@ public:
                 start = preStart->next;
                 postEnd = end->next;
                 
-                reverse(start, end);
+                reverseGroup(start, end);
                 
                 preStart->next = end;
                 start->next = postEnd;
