@@ -11,7 +11,7 @@
 
 
 // Recursive, O(n) time, O(n) space
-class Solution {
+class Solution_Recursive {
 public:
     ListNode* deleteDuplicates(ListNode *head) {
         if (head == nullptr || head->next == nullptr) {
@@ -28,9 +28,22 @@ public:
 
 
 // Iterative, O(n) time, O(1) space
-class SolutionIterative {
+class Solution {
 public:
     ListNode* deleteDuplicates(ListNode *head) {
-        return nullptr;
+        if (head == nullptr || head->next == nullptr) {
+            return head;
+        }
+        ListNode *currHead = head;
+        while (currHead->next != nullptr) {
+            if (currHead->val == currHead->next->val) {
+                ListNode *del = currHead->next;
+                currHead->next = del->next;
+                delete del;
+            } else {
+                currHead = currHead->next;
+            }
+        }
+        return head;
     }
 };
