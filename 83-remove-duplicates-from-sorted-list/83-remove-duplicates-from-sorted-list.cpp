@@ -10,17 +10,27 @@
  */
 
 
+// Recursive, O(n) time, O(n) space
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* cur_node = head;
-        while (cur_node && cur_node->next) {
-            ListNode* next_node = cur_node->next;
-            if (cur_node->val == next_node->val)
-                cur_node->next = next_node->next;
-            else
-                cur_node = next_node;
+    ListNode* deleteDuplicates(ListNode *head) {
+        if (head == nullptr || head->next == nullptr) {
+            return head;
         }
+        ListNode *newHead = deleteDuplicates(head->next);
+        if (head->val == newHead->val) {
+            return newHead;
+        }
+        head->next = newHead;
         return head;
+    }
+};
+
+
+// Iterative, O(n) time, O(1) space
+class SolutionIterative {
+public:
+    ListNode* deleteDuplicates(ListNode *head) {
+        return nullptr;
     }
 };
