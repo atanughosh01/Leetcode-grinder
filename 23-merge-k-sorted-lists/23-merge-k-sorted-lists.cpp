@@ -89,6 +89,7 @@ private:
     };
 public:
     ListNode *mergeKLists(vector<ListNode*> &lists) {
+        if (lists.empty()) return nullptr;
         priority_queue<ListNode*, vector<ListNode*>, cmp> pq;
         for (int i = 0; i < lists.size(); i++) {
             if (lists[i] != nullptr) {
@@ -117,6 +118,7 @@ public:
 class Solution {
 public:
     ListNode *mergeKLists(vector<ListNode*> &lists) {
+        if (lists.empty()) return nullptr;
         map<int, int> nodeFreq;
         for (int i = 0; i< lists.size(); i++) {
             ListNode *node = lists[i];
