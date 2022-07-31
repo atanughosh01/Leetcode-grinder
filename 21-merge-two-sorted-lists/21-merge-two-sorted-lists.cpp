@@ -10,7 +10,8 @@
  */
 
 
-class Solution {
+
+class SolutionRecursive {
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         if (l1 == nullptr) return l2;
@@ -23,5 +24,32 @@ public:
             return l2;
         }
         return nullptr;
+    }
+};
+
+
+
+
+class Solution {
+public:
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        if (l1 == nullptr) return l2;
+        if (l2 == nullptr) return l1;
+        ListNode *preHead = new ListNode(-101);
+        ListNode *tail = preHead;
+        while (l1 != nullptr && l2 != nullptr) {
+            if (l1->val < l2->val) {
+                tail->next = l1;
+                tail = l1;
+                l1 = l1->next;
+            } else {
+                tail->next = l2;
+                tail = l2;
+                l2 = l2->next;                
+            }
+        }
+        if (l1 == nullptr) tail->next = l2;
+        else tail->next = l1;
+        return preHead->next;
     }
 };
