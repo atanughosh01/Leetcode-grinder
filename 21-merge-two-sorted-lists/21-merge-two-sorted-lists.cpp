@@ -10,7 +10,7 @@
  */
 
 
-
+// O(l1.len + l2.len) time, O(l1.len + l2.len) stack space
 class SolutionRecursive {
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
@@ -29,8 +29,8 @@ public:
 
 
 
-
-class Solution {
+// O(l1.len + l2.len) time, O(l1.len + l2.len) space
+class SolutionIterativeWithExtraSpace {
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         if (l1 == nullptr) return l2;
@@ -51,5 +51,28 @@ public:
         if (l1 == nullptr) tail->next = l2;
         else tail->next = l1;
         return preHead->next;
+    }
+};
+
+
+
+// O(l1.len + l2.len) time, O(1) space
+class Solution {
+public:
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+        if (l1 == nullptr) return l2;
+        if (l2 == nullptr) return l1;
+        if (l1->val > l2->val) swap(l1, l2);
+        ListNode *res = l1;
+        while (l1 != nullptr && l2 != nullptr) {
+            ListNode *temp = nullptr;
+            while (l1 != nullptr && l1->val <= l2->val) {
+                temp = l1;
+                l1 = l1->next;
+            }
+            temp->next = l2;
+            swap(l1, l2);
+        }
+        return res;
     }
 };
