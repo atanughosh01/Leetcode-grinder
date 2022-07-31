@@ -29,7 +29,7 @@ public:
 
 
 // O(n) time, O(1) space
-class Solution {
+class Solution_2 {
 public:
     ListNode *detectCycle(ListNode *head) {
         if (!head || !head->next || !head->next->next) {
@@ -48,5 +48,31 @@ public:
             slow = slow->next;
         }
         return fast;
+    }
+};
+
+
+
+// O(n) time, O(1) space
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if (!head || !head->next || !head->next->next) {
+            return nullptr;
+        }
+        ListNode *slow = head, *fast = head;
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) {
+                fast = head;
+                while (fast != slow) {
+                    fast = fast->next;
+                    slow = slow->next;
+                }
+                return fast;
+            }
+        }
+        return nullptr;
     }
 };
