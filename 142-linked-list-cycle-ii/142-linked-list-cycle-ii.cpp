@@ -8,7 +8,8 @@
  */
 
 
-class Solution {
+// O(n) time, O(n) space
+class Solution_1 {
 public:
     ListNode *detectCycle(ListNode *head) {
         unordered_map<ListNode*, int> nodeFreq;
@@ -22,5 +23,30 @@ public:
             node = node->next;
         }
         return nullptr;
+    }
+};
+
+
+
+// O(n) time, O(1) space
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if (!head || !head->next || !head->next->next) {
+            return nullptr;
+        }
+        ListNode *slow = head, *fast = head;
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) break;
+        }
+        if (fast != slow) return nullptr;
+        fast = head;
+        while (fast != slow) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        return fast;
     }
 };
