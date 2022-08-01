@@ -26,6 +26,28 @@ public:
 };
 
 
+// Bruteforce, O(A.len + A.len) time, O(A.len) space
+class SolutionHashmap {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *a = headA, *b = headB;
+        unordered_map<ListNode *, int> nodeFreq;
+        while (a != nullptr) {
+            nodeFreq[a]++;
+            a = a->next;
+        }
+        a = headA;
+        while (b != nullptr) {
+            if (nodeFreq[b] == 0) {
+                b = b->next;
+            } else {
+                return b;
+            }
+        }
+        return b;
+    }
+};
+
 
 // O(A.len + B.len) time, O(1) space
 class SynchronizeTheLengths {
@@ -60,8 +82,7 @@ public:
 };
 
 
-
-// O(A.len + B.len) time but much faster, O(1) space, synchronize-the-lengths
+// O(A.len + B.len) time but much faster and crisp code, O(1) space, synchronize-the-lengths
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
