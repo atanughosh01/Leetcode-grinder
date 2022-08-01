@@ -27,8 +27,8 @@ public:
 
 
 
-// O(A.len * B.len) time, O(1) space
-class Solution {
+// O(A.len + B.len) time, O(1) space
+class SynchronizeTheLengths {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         int lenA = 0, lenB = 0;
@@ -54,6 +54,24 @@ public:
             if (a == b) return a;
             a = a->next;
             b = b->next;
+        }
+        return a;
+    }
+};
+
+
+
+// O(A.len + B.len) time but much faster, O(1) space, synchronize-the-lengths
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *a = headA, *b = headB;
+        while (a != b) {
+            if (a == nullptr) a = headB;
+            else a = a->next;
+            
+            if (b == nullptr) b = headA;
+            else b = b->next;
         }
         return a;
     }
