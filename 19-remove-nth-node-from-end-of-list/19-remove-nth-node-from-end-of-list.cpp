@@ -36,7 +36,7 @@ public:
 
 
 // O(n) time, O(1) space
-class Solution {
+class Solution_2 {
 public:
     ListNode *removeNthFromEnd(ListNode *head, int n) {
         ListNode *preHead = new ListNode(0);
@@ -52,5 +52,24 @@ public:
         slow->next = temp->next;
         delete temp;
         return preHead->next;
+    }
+};
+
+
+// O(n) time, O(1) space, crisper code, less nodes
+class Solution {
+public:
+    ListNode *removeNthFromEnd(ListNode *head, int n) {
+        ListNode *fast = head, *slow = head;
+        for (int i = 0; i < n; i++) fast = fast->next;
+        if (fast == nullptr) return head->next;
+        while (fast->next) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        ListNode *temp = slow->next;
+        slow->next = temp->next;
+        delete temp;
+        return head;
     }
 };
