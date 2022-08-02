@@ -39,22 +39,18 @@ public:
 class Solution {
 public:
     ListNode *removeNthFromEnd(ListNode *head, int n) {
-        ListNode *pre = head, *tail = head;
-        int len = 0;
-        while (tail != nullptr) {
-            len++;
-            tail = tail->next;
+        ListNode *preHead = new ListNode(0);
+        preHead->next = head;
+        ListNode *fast = preHead, *slow = preHead;
+        int k = 0;
+        while (fast != nullptr) {
+            if (k <= n) k++;
+            else slow = slow->next;
+            fast = fast->next;
         }
-        if (len == n) {
-            return head->next;
-        }
-        int m = len - n - 1;
-        while (m--) {
-            pre = pre->next;
-        }
-        ListNode *temp = pre->next;
-        pre->next = temp->next;
+        ListNode *temp = slow->next;
+        slow->next = temp->next;
         delete temp;
-        return head;
+        return preHead->next;
     }
 };
