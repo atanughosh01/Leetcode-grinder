@@ -1,5 +1,5 @@
 // O(N^2) APPROACH
-class Solution {
+class Solution_1 {
 public:    
     vector<int> twoSum(vector<int> &nums, int tar) {
         for (int i = 0; i < nums.size(); i++) {
@@ -16,18 +16,17 @@ public:
 
 
 // O(N) APPROACH
-class Solution_1 {
+class Solution {
 public:    
-    vector<int> twoSum(vector<int> &nums, int tar) {        
-        int n = (int)nums.size();
-        unordered_map<int,int> ump;
-        for(int i=0; i<n; i++) {
-            auto idx = ump.find(tar - nums[i]);
-            if(idx != ump.end() && idx->second != i) {
+    vector<int> twoSum(vector<int> &nums, int tar) {
+        unordered_map<int,int> mp;
+        for (int i = 0; i < nums.size(); i++) {
+            auto idx = mp.find(tar - nums[i]);
+            if (idx != mp.end() && idx->second != i) {
                 return {i, (idx->second)};
             }
-            ump[nums[i]] = i;
+            mp[nums[i]] = i;
         }
         return {};
-      }
+    }
 };
