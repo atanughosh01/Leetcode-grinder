@@ -1,12 +1,12 @@
 class Solution {
 private:
     vector<string> ans, mappings = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    void helper(string &digits, int i, string combi){	
+    void helper(string &digits, int i, string comb){	
         if (i == digits.size()) {
-            ans.push_back(move(combi));    
+            ans.push_back(move(comb));    
         } else {
             for (char c : mappings[digits[i] - '2']) {
-                helper(digits, i + 1, combi + c);
+                helper(digits, i + 1, comb + c);
             }
         }
     }
