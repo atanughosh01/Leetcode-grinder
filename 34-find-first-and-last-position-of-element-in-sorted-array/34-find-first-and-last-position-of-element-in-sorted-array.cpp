@@ -34,8 +34,8 @@ public:
             if (nums[mid] < target) l = mid + 1;
             else r = mid;
         }
-        if (nums[l] != target) return {-1, -1};
-        else first = l;
+        if (nums[l] == target) first = l;
+        else return {-1, -1};
         r = n - 1;
         while (l < r) {
             int mid = l + (r - l) / 2;
