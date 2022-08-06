@@ -63,7 +63,7 @@ private:
     }
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
-        if (head->next == nullptr || k == 1) {
+        if (head == nullptr || head->next == nullptr || k == 1) {
             return head;
         }
 
