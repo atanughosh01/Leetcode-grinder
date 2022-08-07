@@ -1,12 +1,6 @@
 class Solution {
-public:
-    vector<vector<int> > permute(vector<int> &num) {
-	    vector<vector<int> > result;
-	    
-	    permuteRecursive(num, 0, result);
-	    return result;
-    }
-	void permuteRecursive(vector<int> &num, int begin, vector<vector<int> > &result) {
+private:
+	void permuteRecursive(vector<int> &num, int begin, vector<vector<int>> &result) {
 		if (begin >= num.size()) {
 		    result.push_back(num);
 		    return;
@@ -16,5 +10,11 @@ public:
 		    permuteRecursive(num, begin + 1, result);
 		    swap(num[begin], num[i]);
 		}
+    }
+public:
+    vector<vector<int>> permute(vector<int> &num) {
+	    vector<vector<int>> result;
+	    permuteRecursive(num, 0, result);
+	    return result;
     }
 };
