@@ -1,6 +1,6 @@
 class Solution {
 private:
-    bool doable (const vector<int>& nums, int cuts, long long max) {
+    bool doable (const vector<int> &nums, int cuts, long long max) {
         int acc = 0;
         for (int num : nums) {
             if (num > max) return false;    // This step is unnecessary for this problem
@@ -14,7 +14,7 @@ private:
         return true;
     }
 public:
-    int splitArray(vector<int>& nums, int m) {
+    int splitArray(vector<int> &nums, int m) {
         long long left = 0, right = 0;
         for (int num : nums) {
             left = max(left, (long long)num);
