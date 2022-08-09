@@ -1,45 +1,42 @@
-/*
-    class Solution {
-    public:
-        int largestRectangleArea(vector<int>& heights) {
-            stack<int> st;
-            int ans=0;
-            heights.push_back(0);
-            for(int i=0;i<heights.size();i++){
-                while(!st.empty() && heights[st.top()]>heights[i]){
-                    int top=heights[st.top()];
-                    st.pop();
-                    int ran=st.empty()?-1:st.top();
-                    ans=max(ans,top*(i-ran-1));
-                }
-                st.push(i);
+class Solution_1 {
+public:
+    int largestRectangleArea(vector<int> &heights) {
+        stack<int> st;
+        int ans = 0;
+        heights.push_back(0);
+        for (int i=0;i<heights.size();i++) {
+            while (!st.empty() && heights[st.top()]>heights[i]) {
+                int top=heights[st.top()];
+                st.pop();
+                int ran=st.empty()?-1:st.top();
+                ans=max(ans,top*(i-ran-1));
             }
-            return ans;
+            st.push(i);
         }
-    };
-*/
+        return ans;
+    }
+};
 
 
-/*
-    // Brute Force O(n^2)(too slow TLE)
-    class Solution {
-    public:
-        int largestRectangleArea(vector<int>& heights) {
-            int n = heights.size() ; 
-            int max_area = 0 ; 
-            for(int i = 0 ; i < n ; i++) {
-                int curr_max = 0 ; 
-                int min_height = INT_MAX ; 
-                for(int j = i ; j < n ; j++) {
-                    min_height = min(min_height , heights[j]) ; 
-                    curr_max = max(curr_max , min_height * (j - i + 1)) ; 
-                }
-                max_area = max(max_area , curr_max) ; 
+
+// Brute Force O(n^2)(too slow TLE)
+class Solution_2 {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size() ; 
+        int max_area = 0 ; 
+        for(int i = 0 ; i < n ; i++) {
+            int curr_max = 0 ; 
+            int min_height = INT_MAX ; 
+            for(int j = i ; j < n ; j++) {
+                min_height = min(min_height , heights[j]) ; 
+                curr_max = max(curr_max , min_height * (j - i + 1)) ; 
             }
-            return max_area ; 
+            max_area = max(max_area , curr_max) ; 
         }
-    };
-*/
+        return max_area ; 
+    }
+};
 
 
 /*
