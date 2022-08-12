@@ -7,6 +7,7 @@ public:
 		vector<vector<int>> v(n, vector<int> (n));
         
 		while (r1 <= r2 && c1 <= c2) {
+
 			for (int i = c1; i <= c2; i++) //left to right move,row is fixed
 				v[r1][i] = ++val;
 
@@ -18,6 +19,7 @@ public:
 
 			for (int i = r2 - 1; i > r1; i--) // bottom to up move ,colomn is fixed
 				v[i][c1] = ++val;
+
 			r1++; c1++; r2--; c2--;
 		}
 		return v;
