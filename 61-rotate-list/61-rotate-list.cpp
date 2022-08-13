@@ -10,7 +10,39 @@
  */
 
 
+// Time: O(N) + O(N * (k % N)), Space: O(1), N = length of the list
 class Solution {
+public:
+    ListNode *rotateRight(ListNode *head, int k) {
+        if (k == 0 || head == nullptr || head->next == nullptr) {
+            return head;
+        }
+        int len = 0;
+        ListNode *temp = head;
+        while (temp != nullptr) {
+            len++;
+            temp = temp->next;
+        }
+        k %= len;
+        ListNode *newHead = head;
+        while (k--) {
+            ListNode *newTail = newHead;
+            while (newTail->next->next) {
+                newTail = newTail->next;
+            }
+            ListNode *tail = newTail->next;
+            newTail->next = nullptr;
+            tail->next = newHead;
+            newHead = tail;
+        }
+        return newHead;
+    }
+};
+
+
+
+// Time: O(N) + O(N - (k % N)) ≈ O(N), Space: O(1), N = length of the list
+class Solution_2 {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
         if (k == 0 || head == nullptr || head->next == nullptr) {
