@@ -11,7 +11,7 @@
 
 
 // Time: O(N) + O(N * (k % N)), Space: O(1), N = length of the list
-class Solution {
+class Solution_1 {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
         if (k == 0 || head == nullptr || head->next == nullptr) {
@@ -42,7 +42,7 @@ public:
 
 
 // Time: O(N) + O(N - (k % N)) ≈ O(N), Space: O(1), N = length of the list
-class Solution_2 {
+class Solution {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
         if (k == 0 || head == nullptr || head->next == nullptr) {
