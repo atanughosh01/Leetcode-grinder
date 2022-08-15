@@ -8,7 +8,7 @@ public:
             for (int j=0; j<numRows && i<n; j++, i++) tmp[j] += s[i];
             for (int j=numRows-2; j>0 && i<n; j--, i++) tmp[j] += s[i];
         }
-        for (int j=0; j<numRows; j++) ans += tmp[j];
+        for (string &x : tmp) ans += x;
         return ans;
     }
 };
