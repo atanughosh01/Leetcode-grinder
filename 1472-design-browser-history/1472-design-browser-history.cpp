@@ -1,22 +1,36 @@
 class BrowserHistory {
 private:
-    string stack[5005];
-    int p, t;
-public:    
+    list<string> history;
+    list<string> :: iterator it;
+
+public:
     BrowserHistory(string homepage) {
-        stack[p = t = 0] = homepage;
+        history.push_back(homepage);
+        it = history.begin();
     }
     
     void visit(string url) {
-        stack[t = ++p] = url;
+        auto del = it;
+        del++;
+        history.erase(del, history.end());
+        history.push_back(url);
+        it++;
     }
     
     string back(int steps) {
-        return stack[p = max(0, p - steps)];
+        while (it != history.begin() && steps--) {
+            --it;
+        }
+        return *it;
     }
     
     string forward(int steps) {
-        return stack[p = min(t, p + steps)];
+        auto endItr = history.end();
+        --endItr;
+        while (it != endItr && steps--) {
+            ++it;
+        }
+        return *it;
     }
 };
 
