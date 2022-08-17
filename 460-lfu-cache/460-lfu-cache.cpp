@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 // Doubly Linked-List-Node class with prev and next pointers
 class Node {
 public:
@@ -49,7 +52,7 @@ public:
 // LFU Cache class
 class LFUCache {
 private:
-    unordered_map<int, Node*> addrOfKey;
+    unordered_map<int, Node*> addrOfKey;    // hashmap for storing the address corresponding to a key
     unordered_map<int, List*> freqListMap;
     int minFreq, currSize;
     int cacheCapacity;
@@ -72,36 +75,36 @@ private:
 
 public:
     LFUCache(int capacity) {
-        cacheCapacity = capacity;
+        cacheCapacity = capacity;                           // reset the max capacity of the cache
         minFreq = 0;
         currSize = 0;
     }
 
     int get(int key) {
-        if (addrOfKey.find(key) == addrOfKey.end()) {
+        if (addrOfKey.find(key) == addrOfKey.end()) {       // if no such key exists in the record
             return -1;
         }
-        Node *resNode = addrOfKey[key];
-        int res = resNode->val;
+        Node *resNode = addrOfKey[key];                     // find the address of the key
+        int res = resNode->val;                             // get the value of the key
         updateFreqListMap(resNode);
-        return res;
+        return res;                                         // returns the value against the given key
     }
 
     void put(int key, int value) {
         if (cacheCapacity == 0) {
             return;
         }
-        if (addrOfKey.find(key) != addrOfKey.end()) {
-            Node *existingNode = addrOfKey[key];
+        if (addrOfKey.find(key) != addrOfKey.end()) {       // if the key is not present in the address-map
+            Node *existingNode = addrOfKey[key];            // find the address of the key that already exists
             existingNode->val = value;
             updateFreqListMap(existingNode);
         } else {
-            if (currSize == cacheCapacity) {
+            if (currSize == cacheCapacity) {                // if size of the cache reaches its maximum capacity
                 List *list = freqListMap[minFreq];
-                Node *prevNode = list->tail->prev;
-                int keyToBeErased = prevNode->key;
-                addrOfKey.erase(keyToBeErased);
-                freqListMap[minFreq]->deleteNode(prevNode);
+                Node *prevNode = list->tail->prev;          // find the LRU node in the cache
+                int keyToBeErased = prevNode->key;          // find the key that is present at the LRU location
+                addrOfKey.erase(keyToBeErased);             // delete the address of that key
+                freqListMap[minFreq]->deleteNode(prevNode); // delete the LRU node from the LRU location
                 currSize--;
             }
             currSize++;
@@ -110,13 +113,14 @@ public:
             if (freqListMap.find(minFreq) != freqListMap.end()) {
                 listFreq = freqListMap[minFreq];
             }
-            Node *newNode = new Node(key, value);
-            listFreq->addNode(newNode);
-            addrOfKey[key] = newNode;
+            Node *newNode = new Node(key, value);           // create a new node with the key and value
+            listFreq->addNode(newNode);                     // add the new node at the beginning of the cache bcz now it's MRU
+            addrOfKey[key] = newNode;                       // store the new-address in the address-map
             freqListMap[minFreq] = listFreq;
         }
     }
 };
+
 
 
 
