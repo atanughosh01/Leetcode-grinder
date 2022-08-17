@@ -25,16 +25,18 @@ public:
         len = 0;
     }
 
-    void addInFront(Node *node) {
+    // adds a new node in-between two pre-existing nodes
+    void addNode(Node *newNode) {
         Node *temp = head->next;
-        node->next = temp;
-        node->prev = head;
-        head->next = node;
-        temp->prev = node;
+        newNode->next = temp;
+        newNode->prev = head;
+        head->next = newNode;
+        temp->prev = newNode;
         len++;
     }
 
-    void removeNode(Node *delNode) {
+    // breaks the prev and next links of the node to be removed
+    void deleteNode(Node *delNode) {
         Node *delPrev = delNode->prev;
         Node *delNext = delNode->next;
         delPrev->next = delNext;
@@ -51,24 +53,23 @@ private:
     unordered_map<int, List*> freqListMap;
     int minFreq, currSize;
     int cacheCapacity;
-    
+
     void updateFreqListMap(Node *node) {
         addrOfKey.erase(node->key);
-        freqListMap[node->cnt]->removeNode(node);
+        freqListMap[node->cnt]->deleteNode(node);
         if (node->cnt == minFreq && freqListMap[node->cnt]->len == 0) {
             minFreq++;
         }
-
         List *nextHigherFreqList = new List();
         if (freqListMap.find(node->cnt + 1) != freqListMap.end()) {
             nextHigherFreqList = freqListMap[node->cnt + 1];
         }
         node->cnt += 1;
-        nextHigherFreqList->addInFront(node);
+        nextHigherFreqList->addNode(node);
         freqListMap[node->cnt] = nextHigherFreqList;
         addrOfKey[node->key] = node;
     }
-    
+
 public:
     LFUCache(int capacity) {
         cacheCapacity = capacity;
@@ -100,7 +101,7 @@ public:
                 Node *prevNode = list->tail->prev;
                 int keyToBeErased = prevNode->key;
                 addrOfKey.erase(keyToBeErased);
-                freqListMap[minFreq]->removeNode(prevNode);
+                freqListMap[minFreq]->deleteNode(prevNode);
                 currSize--;
             }
             currSize++;
@@ -110,7 +111,7 @@ public:
                 listFreq = freqListMap[minFreq];
             }
             Node *newNode = new Node(key, value);
-            listFreq->addInFront(newNode);
+            listFreq->addNode(newNode);
             addrOfKey[key] = newNode;
             freqListMap[minFreq] = listFreq;
         }
