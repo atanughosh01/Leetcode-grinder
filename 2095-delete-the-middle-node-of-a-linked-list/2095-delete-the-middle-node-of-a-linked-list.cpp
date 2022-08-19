@@ -10,7 +10,7 @@
  */
 
 
-class Solution {
+class Solution_1 {
 public:
     ListNode *deleteMiddle(ListNode *head) {
         if (head->next == nullptr) return nullptr;
@@ -22,6 +22,21 @@ public:
         }
         preMid->next = mid->next;
         delete mid;
+        return head;
+    }
+};
+
+
+class Solution {
+public:
+    ListNode *deleteMiddle(ListNode *head) {
+        if (head->next == nullptr) return nullptr;
+        ListNode *mid = head, *tail = head->next->next;
+        while (tail != nullptr && tail->next != nullptr) {
+            mid = mid->next;
+            tail = tail->next->next;
+        }
+        mid->next = mid->next->next;
         return head;
     }
 };
