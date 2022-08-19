@@ -36,7 +36,9 @@ public:
             mid = mid->next;
             tail = tail->next->next;
         }
+        ListNode *delNode = mid->next;
         mid->next = mid->next->next;
+        delete delNode;
         return head;
     }
 };
