@@ -11,13 +11,13 @@
 
 class Solution {
 public:
-    ListNode* swapPairs(ListNode* head) {
-        ListNode **pp = &head, *a, *b;
-        while ((a = *pp) && (b = a->next)) {
+    ListNode *swapPairs(ListNode *head) {
+        ListNode **temp = &head, *a, *b;
+        while ((a = *temp) && (b = a->next)) {
             a->next = b->next;
             b->next = a;
-            *pp = b;
-            pp = &(a->next);
+            *temp = b;
+            temp = &(a->next);
         }
         return head;
     }
