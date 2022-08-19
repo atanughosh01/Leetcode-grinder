@@ -6,7 +6,7 @@ public:
         for (int n : arr) ++m[n];
         for (auto &p : m) pq.push(p.second);
         int res = 0, cnt = 0;
-        while (cnt * 2 < arr.size()) {
+        while (cnt < arr.size() / 2) {
             res++;
             cnt += pq.top();
             pq.pop();
