@@ -8,8 +8,9 @@ private:
             return;
         }
         for (int i = 0; i < nums.size(); ++i) {
-            if (vis[i] || (i && !vis[i - 1] && nums[i] == nums[i - 1]))
+            if (vis[i] || (i && !vis[i - 1] && nums[i] == nums[i - 1])) {
                 continue;
+            }
             vis[i] = true;
             curr.push_back(nums[i]);
             dfs(nums, curr);
