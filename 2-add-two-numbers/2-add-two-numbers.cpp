@@ -12,7 +12,7 @@
 
 class Solution_Recursive {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
         if (l1 == nullptr) return l2;
         if (l2 == nullptr) return l1;
         
@@ -35,7 +35,7 @@ public:
 // O(max(l1.len, l2.len)) time, O(max(l1.len, l2.len)) space
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
         ListNode *preHead = new ListNode(0);
         ListNode *temp = preHead;
         int carry = 0;
