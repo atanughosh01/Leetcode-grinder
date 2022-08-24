@@ -1,5 +1,6 @@
 class Solution {
 private:
+    const int mod = 1e9 + 7;
     int m, n;
     int memo[50][50][51];
     int DIR[5] = {0, 1, 0, -1, 0};
@@ -8,8 +9,9 @@ private:
         if (maxMove == 0) return 0;
         if (memo[r][c][maxMove] != -1) return memo[r][c][maxMove];
         int ans = 0;
-        for (int i = 0; i < 4; ++i)
-            ans = (ans + dp(r + DIR[i], c + DIR[i+1], maxMove - 1)) % 1000000007;
+        for (int i = 0; i < 4; ++i) {
+            ans = (ans + dp(r + DIR[i], c + DIR[i+1], maxMove - 1)) % mod;
+        }
         return memo[r][c][maxMove] = ans;
     }
 public:
