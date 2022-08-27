@@ -1,7 +1,8 @@
 class Solution {
 public:
     int maxSumSubmatrix(vector<vector<int>> &matrix, int k) {
-        int row = matrix.size(), col = matrix[0].size(), res = INT_MIN;
+        int row = matrix.size(), col = matrix[0].size();
+        int res = INT_MIN;
         for (int l = 0; l < col; ++l) {
             vector<int> sums(row, 0);
             for (int r = l; r < col; ++r) {
