@@ -17,8 +17,7 @@ public:
 };
 
 
-
-class Solution {
+class Solution_2 {
 public:
     string removeStars(string &s) {
         int j = 0;
@@ -27,5 +26,18 @@ public:
             else s[j++] = c;
         }
         return s.substr(0, j);
+    }
+};
+
+
+class Solution {
+public:
+    string removeStars(string &s) {
+        string ans = "";
+        for (char c : s) {
+            if (c == '*') ans.pop_back();
+            else ans += c;
+        }
+        return ans;
     }
 };
