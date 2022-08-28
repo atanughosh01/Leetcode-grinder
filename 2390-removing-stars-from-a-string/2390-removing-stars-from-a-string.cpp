@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 public:
     string removeStars(string &s) {
         multiset<int> star, nonStar;
@@ -13,5 +13,19 @@ public:
         string ans = "";
         for (int i : nonStar) ans += s[i];
         return ans;
+    }
+};
+
+
+
+class Solution {
+public:
+    string removeStars(string &s) {
+        int j = 0;
+        for (char c : s) {
+            if (c == '*') j--;
+            else s[j++] = c;
+        }
+        return s.substr(0, j);
     }
 };
