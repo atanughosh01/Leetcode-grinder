@@ -1,7 +1,7 @@
 class Solution {
 private:
     void dfs(int i, int j, vector<vector<char>> &grid) {
-            int m = grid.size(), n = grid[0].size();
+        int m = grid.size(), n = grid[0].size();
         if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == '0') {
             return;
         }
