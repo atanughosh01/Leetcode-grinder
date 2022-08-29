@@ -1,33 +1,14 @@
-/*
 class Solution {
 public:
-    vector<vector<int>> groupThePeople(vector<int>& gz) {
-      vector<vector<int>> res, groups(gz.size() + 1);
-      for (auto i = 0; i < gz.size(); ++i) {
-        groups[gz[i]].push_back(i);
-        if (groups[gz[i]].size() == gz[i]) {
-          res.push_back({});
-          swap(res.back(), groups[gz[i]]);
-        }
-      }
-      return res;
-    }
-};
-
-*/
-
-class Solution {
-public:
-    vector<vector<int>> groupThePeople(vector<int>& g) {
-        vector<vector<int>> ans;
-        unordered_map<int,vector<int>> m;
-        for(int i=0; i<g.size(); i++) {
-			m[g[i]].push_back(i);
-			if(m[g[i]].size()==g[i]) {
-                ans.push_back(m[g[i]]);
-                m[g[i]].clear();
+    vector<vector<int>> groupThePeople(vector<int> &groupSizes) {
+        vector<vector<int>> res, groups(groupSizes.size() + 1);
+        for (int i = 0; i < groupSizes.size(); ++i) {
+            groups[groupSizes[i]].push_back(i);
+            if (groups[groupSizes[i]].size() == groupSizes[i]) {
+                res.push_back({});
+                swap(res.back(), groups[groupSizes[i]]);
             }
         }
-        return ans; 
+        return res;
     }
 };
