@@ -5,9 +5,9 @@ private:
         vis[v] = 1;
         col[v] = c;
         for (int child : graph[v]) {
-            // here c^1 is for flipping 1 by 0 or 0 by 1, that is flip the current color
-            if ((vis[child] == 0 && !dfs(child, c^1, graph)) || col[v] == col[child])
+            if ((vis[child] == 0 && !dfs(child, c^1, graph)) || col[v] == col[child]) {
                 return false;
+            }
         }
         return true;
     }
@@ -17,7 +17,7 @@ public:
         vis.resize(n);
         col.resize(n);
         for (int i = 0; i < n; ++i) {
-            if (vis[i] == 0 && !dfs(i, 0, graph)) {
+            if (!vis[i] && !dfs(i, 0, graph)) {
                 return false;
             }
         }
