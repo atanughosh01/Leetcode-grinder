@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int romanToInt(string &s) {
+    int romanToInt(string &roman) {
         unordered_map<char, int> T = {
             {'I', 1},
             {'V', 5},
@@ -9,15 +9,15 @@ public:
             {'C', 100},
             {'D', 500},
             {'M', 1000}
-        };                      
-        int sum = T[s.back()];
-        for (int i = s.size() - 2; i >= 0; i--)  {
-            if (T[s[i]] < T[s[i + 1]]) {
-                sum -= T[s[i]];
+        };
+        int integer = T[roman.back()];
+        for (int i = roman.size() - 2; i >= 0; i--) {
+            if (T[roman[i]] >= T[roman[i + 1]]) {
+                integer += T[roman[i]];
             } else {
-               sum += T[s[i]];
+                integer -= T[roman[i]];
             }
         }
-        return sum;
+        return integer;
     }
 };
