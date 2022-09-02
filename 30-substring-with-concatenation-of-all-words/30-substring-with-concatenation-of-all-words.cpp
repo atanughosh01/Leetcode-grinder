@@ -6,7 +6,7 @@ public:
         unordered_map<string, int> counts;
         vector<int> indexes;
         for (string &word : words) counts[word]++;
-        int len = words[0].length();
+        int len = words[0].size();
         for (int i = 0; i < n - num * len + 1; i++) {
             unordered_map<string, int> seen;
             int j = 0;
