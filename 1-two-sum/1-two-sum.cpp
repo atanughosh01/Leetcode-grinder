@@ -16,14 +16,32 @@ public:
 
 
 // O(N) APPROACH
+class Solution_2 {
+public:    
+    vector<int> twoSum(vector<int> &nums, int tar) {
+        unordered_map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++) {
+            auto it = mp.find(tar - nums[i]);
+            if (it != mp.end() && it->second != i) {
+                return {i, (it->second)};
+            }
+            mp[nums[i]] = i;
+        }
+        return {};
+    }
+};
+
+
+
+// O(N) APPROACH
 class Solution {
 public:    
     vector<int> twoSum(vector<int> &nums, int tar) {
-        unordered_map<int,int> mp;
+        unordered_map<int, int> mp;
         for (int i = 0; i < nums.size(); i++) {
-            auto idx = mp.find(tar - nums[i]);
-            if (idx != mp.end() && idx->second != i) {
-                return {i, (idx->second)};
+            int numToFind = (tar - nums[i]);
+            if (mp.find(numToFind) != mp.end()) {
+                return {mp[numToFind], i};
             }
             mp[nums[i]] = i;
         }
