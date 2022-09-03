@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 public:
     bool findSubarrays(vector<int> &nums) {
         int n = nums.size();
@@ -14,5 +14,21 @@ public:
             }
         }
         return false;
+    }
+};
+
+
+class Solution {
+public:
+    bool findSubarrays(vector<int> &nums) {
+        int n = nums.size();
+        unordered_set<int> ans;
+        for(int i = 1; i < n; i++){
+            ans.insert(nums[i] + nums[i - 1]);
+        }
+        if (ans.size() == (nums.size() - 1)){
+            return false;
+        }
+        return true;
     }
 };
