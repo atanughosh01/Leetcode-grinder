@@ -118,8 +118,8 @@ public:
 
 
 
-// Magic Solution | Using KSum Concept
-class Solution {
+// Magic Solution - 1 | Using KSum Concept
+class Solution_5 {
 private:
     const int K = 4;
     void search(const vector<int> &arr, int idx, const int k, int tar, vector<int> &q, vector<vector<int>> &ans) {
@@ -166,5 +166,60 @@ public:
         vector<vector<int>> res;
         search(nums, 0, K, target, quad, res);
         return res;
+    }
+};
+
+
+
+// Magic Solution - 2 | Using KSum Concept
+class Solution {
+private:
+    vector<vector<int>> twoSum(const vector<int> &nums, const ll target, int start) {
+        vector<vector<int>> res;
+        int l = start, r = nums.size() - 1;
+        while (l < r) {
+            ll curr_sum = nums[l] + nums[r];
+            if (curr_sum < target || (l > start && nums[l] == nums[l - 1])) l++;
+            else if (curr_sum > target || (r < nums.size() - 1 && nums[r] == nums[r + 1])) r--;
+            else res.push_back({nums[l++], nums[r--]});
+        }
+        return res;
+    }
+    vector<vector<int>> kSum(const vector<int> &nums, const ll target, int start, const int k) {
+        vector<vector<int>> res;
+
+        // If we have run out of numbers to add, return res.
+        if (start == nums.size()) {
+            return res;
+        }
+
+        // There are k remaining values to add to the sum. The
+        // average of these values is at least target / k.
+        ll average_value = target / k;
+
+        // We cannot obtain a sum of target if the smallest value
+        // in nums is greater than target / k or if the largest
+        // value in nums is smaller than target / k.
+        if (nums[start] > average_value || nums.back() < average_value) {
+            return res;
+        }
+        if (k == 2) {
+            return twoSum(nums, target, start);
+        }
+        for (int i = start; i < nums.size(); i++) {
+            if (i == start || nums[i] != nums[i - 1]) {
+                vector<vector<int>> arr = kSum(nums, (ll)target - nums[i], i + 1, k - 1);
+                for (vector<int> &subset : arr) {
+                    res.push_back({nums[i]});
+                    res.back().insert(res.back().end(), subset.begin(), subset.end());
+                }
+            }
+        }
+        return res;
+    }
+public:
+    vector<vector<int>> fourSum(vector<int> &nums, int target) {
+        sort(nums.begin(), nums.end());
+        return kSum(nums, target, 0, 4);
     }
 };
