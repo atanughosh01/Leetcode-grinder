@@ -86,7 +86,7 @@ public:
 
 
 // Most Optimal | O(n^3) time | O(1) space
-class Solution {
+class Solution_4 {
 public:
     vector<vector<int>> fourSum(vector<int> &nums, int target) {
         int n = nums.size();
@@ -111,6 +111,60 @@ public:
             }
             while (i < n - 1 && nums[i] == nums[i + 1]) i++;
         }
+        return res;
+    }
+};
+
+
+
+
+// Magic Solution | Using KSum Concept
+class Solution {
+private:
+    const int K = 4;
+    void search(const vector<int> &arr, int idx, const int k, int tar, vector<int> &q, vector<vector<int>> &ans) {
+        int sz = arr.size();
+        if (k == 2) {
+            int l = idx, r = sz - 1;
+            while (l < r) {
+                ll sum = arr[l] + arr[r];
+                if (sum > tar) r--;
+                else if (sum < tar) l++;
+                else {
+                    q.push_back(arr[l++]);
+                    q.push_back(arr[r--]);
+                    ans.push_back(q);
+                    q.pop_back();
+                    q.pop_back();
+                    while (l < r && arr[l] == arr[l - 1]) l++;
+                    while (l < r && arr[r] == arr[r + 1]) r--;
+                }
+            }
+        } else {
+            for (int j = idx; j <= sz - k; j++) {
+                ll sum = 0;
+                for (int i = j; i < k + j; i++) {
+                    sum += arr[i];
+                }
+                if (sum > tar) break;
+                sum = arr[j];
+                for (int i = 0; i < k - 1; i++) {
+                    sum += arr[sz - i - 1];
+                }
+                if (sum < tar) continue;
+                q.push_back(arr[j]);
+                search(arr, j + 1, k - 1, tar - arr[j], q, ans);
+                q.pop_back();
+                while (j <= sz - k && arr[j] == arr[j + 1]) j++;
+            }
+        }
+    }
+public:
+    vector<vector<int>> fourSum(vector<int> &nums, int target) {
+        sort(nums.begin(), nums.end());
+        vector<int> quad;
+        vector<vector<int>> res;
+        search(nums, 0, K, target, quad, res);
         return res;
     }
 };
