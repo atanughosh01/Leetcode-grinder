@@ -1,55 +1,59 @@
-/*
-
-// O(N^4) bruteforce TLE solution
-
-class Solution {
+// Bruteforce | O(n^4) time | O(1) space
+class Solution_1 {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
+    int fourSumCount(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3, vector<int> &nums4) {
         int cnt = 0;
-        for(int i : nums1)
-            for(int j : nums2)
-                for(int k : nums3)
-                    for(int l : nums4)
-                        if(i + j + k + l == 0)
+        for (int i : nums1) {
+            for (int j : nums2) {
+                for (int k : nums3) {
+                    for (int l : nums4) {
+                        if (i + j + k + l == 0) {
                             cnt++;
+                        }
+                    }
+                }
+            }
+        }
         return cnt;
     }
 };
 
 
-// O(N^3) better but TLE solution
-
-class Solution {
+// Better | O(n^3) time | O(n) space
+class Solution_2 {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
-        unordered_map<int,int> mp;
-        for(int l : nums4)
-            mp[l]++;
+    int fourSumCount(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3, vector<int> &nums4) {
+        unordered_map<int, int> mp;
+        for (int l : nums4) mp[l]++;
         int cnt = 0;
-        for(int i : nums1)
-            for(int j : nums2)
-                for(int k : nums3)
-                        cnt += mp[-(i+j+k)];
+        for (int i : nums1) {
+            for (int j : nums2) {
+                for (int k : nums3) {
+                    cnt += mp[-(i + j + k)];
+                }
+            }
+        }
         return cnt;
     }
 };
 
-*/
 
-
-// O(N^2) optimal accepted solution
-
+// Optimal | O(n^2) time | O(n^2) space
 class Solution {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
-        unordered_map<int,int> mp;
-        for(int k : nums3)
-            for(int l : nums4)
+    int fourSumCount(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3, vector<int> &nums4) {
+        unordered_map<int, int> mp;
+        for (int k : nums3) {
+            for (int l : nums4) {
                 mp[k + l]++;
+            }
+        }
         int cnt = 0;
-        for(int i : nums1)
-            for(int j : nums2)
-                        cnt += mp[-(i + j)];
+        for (int i : nums1) {
+            for (int j : nums2) {
+                cnt += mp[-(i + j)];
+            }
+        }
         return cnt;
     }
 };
