@@ -1,38 +1,8 @@
-/*
-    class Solution {
-    public:
-        int minimumDeletions(vector<int> &nums) {
-            int n = (int)(nums.size());
-            int mx = INT_MIN, mn = INT_MAX;
-            int max_idx = -1, min_idx = -1;
-            for (int i = 0; i < n; i++) {
-                if (nums[i] > mx) {
-                    mx = nums[i];
-                    max_idx = i;
-                }
-                if (nums[i] < mn) {
-                    mn = nums[i];
-                    min_idx = i;
-                }
-            }
-            int lcnt_max = max_idx + 1, rcnt_max = n - max_idx;
-            int lcnt_min = min_idx + 1, rcnt_min = n - min_idx;
-            int mn1 = min(max(lcnt_max, lcnt_min), (lcnt_max + rcnt_min));
-            int mn2 = min(max(rcnt_max, rcnt_min), (lcnt_min + rcnt_max));
-            return min(mn1, mn2);
-        }
-    };
-*/
-
-
-
 class Solution {
 public:
-    int minimumDeletions(vector<int> &nums) {
-        int n = (int)(nums.size());
-        int i = min_element(nums.begin(), nums.end()) - nums.begin();
-        int j = max_element(nums.begin(), nums.end()) - nums.begin();
-        if (i > j) swap(i,j);
-        return min(j+1, min(n-i, i+1+n-j));
+    int minimumDeletions(vector<int>& A) {
+        int a = max_element(begin(A), end(A)) - begin(A), b = min_element(begin(A), end(A)) - begin(A), N = A.size();
+        if (a > b) swap(a, b);
+        return min({ a + 1 + N - b, b + 1, N - a });
     }
 };
