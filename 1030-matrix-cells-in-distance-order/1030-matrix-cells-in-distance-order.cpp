@@ -7,7 +7,7 @@ public:
                 res.push_back({i, j, abs(i - rCenter) + abs(j - cCenter)});
             }
         }
-        sort(res.begin(), res.end(), [](vector<int> &a, vector<int> &b) {
+        sort(res.begin(), res.end(), [](const vector<int> &a, const vector<int> &b) {
             return a[2] < b[2];
         });
         for (vector<int> &d: res) {
