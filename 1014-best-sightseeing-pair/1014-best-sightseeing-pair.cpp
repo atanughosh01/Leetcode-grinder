@@ -12,7 +12,9 @@ public:
     }
 };
 
-class Solution {
+
+
+class Solution_2 {
 public:
     int maxScoreSightseeingPair(vector<int> &values) {
         int res = 0, curr = 0;
@@ -21,5 +23,19 @@ public:
             curr = max(curr, value) - 1;
         }
         return res;
+    }
+};
+
+
+
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int> &values) {
+        int maxScore = 0, maxSum = values[0] + 0;
+        for (int i = 1; i < values.size(); i++) {
+            maxScore = max(maxScore, maxSum + values[i] - i);
+            maxSum = max(maxSum, values[i] + i);
+        }
+        return maxScore;
     }
 };
