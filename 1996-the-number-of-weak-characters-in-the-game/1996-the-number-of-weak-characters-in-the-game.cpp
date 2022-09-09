@@ -36,7 +36,7 @@ public:
 
 
 // Optimal | O(n * log(n)) time | O(1) space | n = prop.length
-class Solution {
+class Solution_3 {
 public:
     int numberOfWeakCharacters(vector<vector<int>> &prop) {
         int cnt = 0, maxSoFar = INT_MIN;
@@ -46,6 +46,29 @@ public:
         for (const vector<int> &p : prop) {                         // forward traversal
             if (p[1] < maxSoFar) cnt++;
             maxSoFar = max(maxSoFar, p[1]);
+        }
+        return cnt;
+    }
+};
+
+
+
+// Most Optimal | O(n) time | Some will say O(1) space, but I say O(n) space | n = prop.length
+class Solution {
+public:
+    int numberOfWeakCharacters(vector<vector<int>> &prop) {
+        const int N = 1e5;
+        int cnt = 0, maxArr[N+2]{0};
+        for (const vector<int> &p : prop) {
+            maxArr[p[0]] = max(maxArr[p[0]], p[1]);
+        }
+        for (int i = N; i > 0; i--) {
+            maxArr[i - 1] = max(maxArr[i - 1], maxArr[i]);
+        }
+        for (const vector<int> &p : prop) {
+            if (maxArr[p[0] + 1] > p[1]) {
+                cnt++;
+            }
         }
         return cnt;
     }
