@@ -19,7 +19,7 @@ public:
 
 
 // Slightly Optimized | Time O(n^2) | Space O(1) | n = arr.length
-class Solution {
+class Solution_2 {
 public:
     int sumOddLengthSubarrays(vector<int> &arr) {
         int n = arr.size(), res = 0, sum = 0;
@@ -31,6 +31,37 @@ public:
                     res += sum;
                 }
             }
+        }
+        return res;
+    }
+};
+
+
+
+// Optimal | Time O(n) | Space O(1) | n = arr.length
+class Solution_3 {
+public:
+    int sumOddLengthSubarrays(vector<int> &arr) {
+        int n = arr.size(), res = 0;
+        for (int i = 0; i < n; i++) {
+            int start_i = n - i;                // number of sub-arrays starts with arr[i]
+			int end_i = i + 1;                  // number of sub-arrays ends with arr[i]
+			int total = start_i * end_i;        // total sub-arrays containing arr[i]
+			res += arr[i] * ceil(total / 2.0);  // contribution of arr[i] in odd length sub-arrays
+        }
+        return res;
+    }
+};
+
+
+
+// Simply
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int> &arr) {
+        int n = arr.size(), res = 0;
+        for (int i = 0; i < n; i++) {
+			res += arr[i] * ceil((n - i) * (i + 1) / 2.0);
         }
         return res;
     }
