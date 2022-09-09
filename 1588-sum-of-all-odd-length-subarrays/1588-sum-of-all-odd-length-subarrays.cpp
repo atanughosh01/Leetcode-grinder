@@ -56,12 +56,26 @@ public:
 
 
 // Simply
-class Solution {
+class Solution_4 {
 public:
     int sumOddLengthSubarrays(vector<int> &arr) {
         int n = arr.size(), res = 0;
         for (int i = 0; i < n; i++) {
 			res += arr[i] * ceil((n - i) * (i + 1) / 2.0);
+        }
+        return res;
+    }
+};
+
+
+
+// Even Better
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int> &arr) {
+        int n = arr.size(), res = 0;
+        for (int i = 0; i < n; i++) {
+			res += arr[i] * (((n - i) * (i + 1) + 1) / 2);
         }
         return res;
     }
