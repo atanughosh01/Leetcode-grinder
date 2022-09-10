@@ -8,7 +8,7 @@ public:
 };
 
 
-class Solution {
+class Solution_2 {
 public:
     int tribonacci(int n) {
         if (n < 2) return n;
@@ -20,5 +20,18 @@ public:
             c = d;
         }
         return c;
+    }
+};
+
+
+
+class Solution {
+public:
+    int tribonacci(int n) {
+        int dp[3] = {0, 1, 1};
+        for (int i = 3; i <= n; ++i) {
+            dp[i % 3] = dp[0] + dp[1] + dp[2];
+        }
+        return dp[n % 3];
     }
 };
