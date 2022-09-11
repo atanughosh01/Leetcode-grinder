@@ -1,20 +1,17 @@
 class Solution {
 public:
     int mostFrequentEven(vector<int> &nums) {
+        int cnt = 0;
         map<int, int> mp;
         for (int &num : nums) {
-            if (num % 2==0) {
+            if (num % 2 == 0) {
                 mp[num]++;
+                cnt = max(cnt, mp[num]);
             }
         }
-        int res = 0, cnt = 0;
-        for (auto it = mp.begin(); it != mp.end(); it++) {
-            int val = (it->second);
-            cnt = max(cnt, val);
-        }
-        for (auto it = mp.begin(); it != mp.end(); it++) {
-            if (it->second == cnt) {
-                return it->first;
+        for (auto &[key, value] : mp) {
+            if (value == cnt) {
+                return key;
             }
         }
         return -1;
