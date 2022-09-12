@@ -5,10 +5,9 @@ public:
         for (int &num : nums) {  
             int n = res.size();
             for (int i = 0; i < n; i++) {
-                // res[i].push_back(num);
-                // res.push_back(res[i]);
-                res.push_back(res[i]);
-                res.back().push_back(num);
+                vector<int> temp = res[i];
+                temp.push_back(num);
+                res.push_back(temp);
             }
         }
         return res;
