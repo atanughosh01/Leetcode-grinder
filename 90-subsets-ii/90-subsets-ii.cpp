@@ -8,9 +8,9 @@ public:
             startIdx = (i >= 1 && nums[i] == nums[i - 1]) ? sz : 0;
             sz = res.size();
             for (int j = startIdx; j < sz; j++) {
-                vector<int> temp = res[j];
-                temp.push_back(nums[i]);
-                res.push_back(temp);
+                vector<int> sub = res[j];
+                sub.push_back(nums[i]);
+                res.push_back(sub);
             }
         }
         return res;      
