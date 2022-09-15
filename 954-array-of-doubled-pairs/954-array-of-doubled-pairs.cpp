@@ -27,8 +27,7 @@ public:
 
 
 
-
-class Solution {
+class Solution_2 {
 public:
     bool canReorderDoubled(vector<int> &arr) {
         sort(arr.begin(), arr.end());
@@ -45,6 +44,34 @@ public:
             int y = x > 0 ? x*2 : x/2;
             if (mp[y] == 0) return false;
             mp[x]--, mp[y]--;
+        }
+        return true;
+    }
+};
+
+
+
+
+class Solution {
+public:
+    bool canReorderDoubled(vector<int>& arr) {
+        sort(arr.begin(), arr.end());
+        unordered_map<int, int> mp;
+        long long sum = 0;
+        for (int &x : arr) {
+            sum += x;
+            mp[x]++;
+        }
+        if (sum % 3 != 0) return false;
+        for (int &x : arr) {
+            if (mp[x] && mp[x*2]) {
+                mp[x]--, mp[x*2]--;
+            }
+        }
+        for (auto &[key, val] : mp) {
+            if (val != 0) {
+                return false;
+            }
         }
         return true;
     }
