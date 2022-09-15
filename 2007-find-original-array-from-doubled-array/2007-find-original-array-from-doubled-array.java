@@ -1,0 +1,16 @@
+class Solution {
+    public int[] findOriginalArray(int[] changed) {
+        int[] res = new int[changed.length/2];
+        Queue<Integer> x = new LinkedList<>();
+        Arrays.sort(changed);
+        int i = 0;
+        for (int num : changed) {
+            if (!x.isEmpty() && x.peek() == num) {
+                res[i++] = x.poll() / 2;
+            } else {
+                x.add(num * 2);
+            }
+        }
+        return x.isEmpty() ? res : new int[]{};
+    }
+}
