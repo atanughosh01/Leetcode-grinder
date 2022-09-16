@@ -13,11 +13,17 @@ public:
                 available.push(busy.top().second);
                 busy.pop();
             }
-            long long start = available.empty() ? busy.top().first : meeting[0];
+            long long start = -1, room = -1;
             long long duration = meeting[1] - meeting[0];
-            int room = available.empty() ? busy.top().second : available.top();
-            if (available.empty()) busy.pop();
-            else available.pop();
+            if (available.empty()) {
+                start = busy.top().first;
+                room = busy.top().second;
+                busy.pop();
+            } else {
+                start = meeting[0];
+                room = available.top();
+                available.pop();
+            }
             cnt[room]++;
             busy.push({start + duration, room});
         }
