@@ -29,7 +29,7 @@ public:
 
 
 // Optimal | O(n * m^2) Time | O(n) Space | n = words.length, m = avg value of words[i].length
-class Solution {
+class Solution_2 {
 private:
     bool isPalindrome(string &s) {
         int l = 0, r = s.size() - 1;
@@ -86,6 +86,62 @@ public:
                 if (pos.find(right) != pos.end() && pos[right] != i && isPalindrome(left)) {
                     res.push_back({pos[right], i});
                 }
+            }
+        }
+        return res;
+    }
+};
+
+
+
+// Trie Solution | Optimal
+class TrieNode {
+   public:
+    TrieNode() {}
+    TrieNode *next[26]{};
+    int index = -1;
+    vector<int> palindromeIndices;
+};
+
+class Solution {
+private:
+    TrieNode root;
+    bool isPalindrome(string &s, int i, int j) {
+        while (i < j && s[i] == s[j]) ++i, --j;
+        return i >= j;
+    }
+    void add(string &s, int i) {
+        TrieNode *node = &root;
+        for (int j = s.size() - 1; j >= 0; --j) {
+            if (isPalindrome(s, 0, j)) node->palindromeIndices.push_back(i); // words[i]'s prefix forms a palindrome
+            int c = s[j] - 'a';
+            if (!node->next[c]) node->next[c] = new TrieNode();
+            node = node->next[c];
+        }
+        node->index = i;
+        node->palindromeIndices.push_back(i);   // words[i] itself is a palindrome bcz its prefix is empty string here
+    }
+public:
+    vector<vector<int>> palindromePairs(vector<string> &words) {
+        int n = words.size();
+        for (int i = 0; i < n; i++) add(words[i], i);
+        vector<vector<int>> res;
+        for (int i = 0; i < n; ++i) {
+            int m = words[i].size();
+            TrieNode *node = &root;
+            for (int j = 0; j < m && node; ++j) {
+                if (node->index != -1 && node->index != i && isPalindrome(words[i], j, m - 1)) {
+                    res.push_back({i, node->index});
+                }
+                // words[i]'s prefix matches this word and words[i]'s suffix forms a palindrome
+                node = node->next[words[i][j] - 'a'];
+            }
+            if (!node) continue;
+            for (int &idx : node->palindromeIndices) {
+                // words[i] is exhausted in the matching above. 
+                // If a word whose prefix is palindrome after matching its suffix with words[i], 
+                // then this is also a valid pair
+                if (i != idx) res.push_back({i, idx});
             }
         }
         return res;
