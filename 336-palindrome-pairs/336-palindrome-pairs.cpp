@@ -1,70 +1,93 @@
-class Solution {
-public:
-    bool check_palindrome(string &s) {
-        int left = 0;
-        int right = s.size() - 1;
-        
-        while (left < right) {
-            if (s[left] != s[right]) {
+// Bruteforce | O(n*n*m) Time | O(n) Space | n = words.length
+class Solution_1 {
+private:
+    bool isPalindrome(string &s) {
+        int l = 0, r = s.size()-1;
+        while (l < r) {
+            if (s[l++] != s[r--]) {
                 return false;
             }
-            left++; right--;
         }
-        
         return true;
     }
-    
-    vector<vector<int>> palindromePairs(vector<string>& words) {
-        unordered_map<string, int> rev;
-        string temp;
-        
+public:
+    vector<vector<int>> palindromePairs(vector<string> &words) {
         int n = words.size();
-        
+        vector<vector<int>> res;
         for (int i = 0; i < n; i++) {
-            temp = words[i];
-            reverse(temp.begin(), temp.end());
-            
-            rev[temp] = i;
+            for (int j = 0; j < n; j++) {
+                string concat = words[i] + words[j];
+                if (j != i &&isPalindrome(concat)) {
+                    res.push_back({i, j});
+                }
+            }
         }
-        
-        vector<vector<int>> ans;
-        
-        if (rev.find("") != rev.end()) {
+        return res;
+    }
+};
+
+
+
+// Optimal | O(n * m^2) Time | O(n) Space | n = words.length, m = avg value of words[i].length
+class Solution {
+private:
+    bool isPalindrome(string &s) {
+        int l = 0, r = s.size() - 1;
+        while (l < r) {
+            if (s[l++] != s[r--]) {
+                return false;
+            }
+        }
+        return true;
+    }
+public:
+    vector<vector<int>> palindromePairs(vector<string> &words) {
+        int n = words.size();
+        vector<vector<int>> res;
+        unordered_map<string, int> pos;
+
+        // O(n*m) Time operation
+        for (int i = 0; i < n; i++) {
+            string rev = words[i];
+            reverse(rev.begin(), rev.end());    // O(m) Time operation
+            pos[rev] = i;
+        }
+
+        // O(n*m) Time operation
+        if (pos.find("") != pos.end()) {
             for (int i = 0; i < n; i++) {
-                if (rev[""] == i) {
-                    continue;
-                }
-                
-                if (check_palindrome(words[i])) {
-                    ans.push_back({i, rev[""]});
+                if (pos[""] != i && isPalindrome(words[i])) {   // O(m) Time operation
+                    res.push_back({i, pos[""]});
                 }
             }
         }
-        
-        string left, right, word;
-        
+
+        // O(n * m^2) Time operation
         for (int i = 0; i < n; i++) {
-            word = words[i];
-            
-            left = "";
-            right = word;
-            
-            int sz = word.size();
-            
-            for (int j = 0; j < sz; j++) {
-                left.push_back(word[j]);
-                right.erase(0, 1);
-                
-                if (rev.find(left) != rev.end() && rev[left] != i && check_palindrome(right)) {
-                    ans.push_back({i, rev[left]});
+            int m = words[i].size();
+            string left = "";
+            string right = words[i];
+            for (int j = 0; j < m; j++) {
+                left.push_back(words[i][j]);
+                right.erase(0, 1);              // constant time operation
+
+                // for "llsss", "sll"
+                // when j=2 left = "lls"; right="ss"; pos["lls"] does exist,
+                // so if right is palindrome, the pair is palindrome
+                // O(m) Time operation
+                if (pos.find(left) != pos.end() && pos[left] != i && isPalindrome(right)) {
+                    res.push_back({i, pos[left]});
                 }
-                
-                if (rev.find(right) != rev.end() && rev[right] != i && check_palindrome(left)) {
-                    ans.push_back({rev[right], i});
+
+                // for "lls", "sssll"
+                // when j=2 left = "ss"; right="sll"; pos["sll"] does exist,
+                // so if left is palindrome, the pair is palindrome
+                // O(m) Time operation
+                if (pos.find(right) != pos.end() && pos[right] != i && isPalindrome(left)) {
+                    res.push_back({pos[right], i});
                 }
             }
-        }   
-        
-        return ans;
+        }
+        return res;
     }
 };
