@@ -1,7 +1,7 @@
 class Solution {
 private:
-    double dist(int x1, int y1, int x2, int y2) {
-        int sq = (x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2);
+    double dist(const vector<int> &arr) {
+        int sq = arr[0]*arr[0] + arr[1]*arr[1];
         return sqrt(sq);
     }
 public:
@@ -11,13 +11,13 @@ public:
         vector<vector<int>> res;
         map<double, vector<int>> mp;
         for (int i = 0; i < n; i++) {
-            double d = dist(points[i][0], points[i][1], 0, 0);
+            double d = dist(points[i]);
             mp[d].push_back(i);
         }
         for (auto it = mp.begin(); it != mp.end(); it++) {
-            vector<int> v = it->second;
-            for (int i = 0; i < v.size(); i++) {
-                res.push_back(points[v[i]]);
+            vector<int> vec = it->second;
+            for (int &x : vec) {
+                res.push_back(points[x]);
                 if (k == res.size()) return res;
             }
         }
