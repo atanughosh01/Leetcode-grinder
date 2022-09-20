@@ -1,16 +1,26 @@
-class Node {
+class TrieNode {
 public:
     char ch;
-    Node* children[26] = {nullptr};
+    TrieNode *children[26] = {nullptr};
     int prefix_cnt;
 };
 
 class Solution {
 private:
-    Node* root = new Node;
+    TrieNode *root = new TrieNode();
+    void insertWord(string &word) {
+        TrieNode *ptr = root;
+        for (char &ch : word) {
+            if (ptr->children[ch - 'a'] == nullptr) {
+                ptr->children[ch - 'a'] = new TrieNode();
+            }
+            ptr = ptr->children[ch - 'a'];
+            ptr->prefix_cnt++;
+        }
+    }
     int prefixCount(string &prefix) {
-        Node* tmp = root;
         int cnt = 0;
+        TrieNode *tmp = root;
         for (char &ch : prefix) {
             int index = ch - 'a';
             if (tmp->children[index] == nullptr) break;
@@ -19,17 +29,8 @@ private:
         }
         return cnt;
     }
-    void insertWord(string &word) {
-        Node* ptr = root;
-        for (char &ch : word) {
-            if (ptr->children[ch - 'a'] == nullptr)
-                ptr->children[ch - 'a'] = new Node();
-            ptr = ptr->children[ch - 'a'];
-            ptr->prefix_cnt++;
-        }
-    }
 public:
-    vector<int> sumPrefixScores(vector<string>& words) {
+    vector<int> sumPrefixScores(vector<string> &words) {
         vector<int> res;
         for (string &word : words) insertWord(word);
         for (string &word : words) {
