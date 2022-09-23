@@ -1,11 +1,12 @@
 class Solution {
 public:
-    int majorityElement(vector<int>& a) {
-        int c(-1), cnt(0);
-        for(auto n: a) {
-            if (cnt == 0) c = n;
-            cnt += (n == c) ? 1 : -1;
+    int majorityElement(vector<int> &nums) {
+        int n = nums.size(), res = 0;
+        unordered_map<int, int> freq;
+        for (int &x : nums) freq[x]++;
+        for (auto &[key, val] : freq) {
+            if (val > n/2) return key;
         }
-        return c;
+        return -1;
     }
 };
