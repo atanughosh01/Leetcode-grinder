@@ -13,7 +13,7 @@ public:
 
 
 // O(2 * n) => O(n) Time | O(n*n + n) Space => O(n^2) | n = s.length
-class Solution {
+class Solution_2 {
 public:
 	string frequencySort(string &s) {
 		int n = s.size();
@@ -30,5 +30,24 @@ public:
 			res += bucket[i];               // Total O(n) Space
 		}
 		return res;
+	}
+};
+
+
+// O(n) Time | O(2 * n) => O(n) Space | n = s.length
+class Solution {
+public:
+	string frequencySort(string &s) {
+        unordered_map<char, int> freq;
+        map<int, string> dupStr;
+        string res;
+        for (char &c : s) freq[c]++;        // max size = 128 | O(128) Space => Constant Space && O(n) Time
+        for (auto &[_char, cnt] : freq) {          // O(128 * log(128)) Time => Constant Time
+            dupStr[cnt] += string(cnt, _char);    // O(128 * n) Space => O(n) Space
+        }
+        for (auto rit = dupStr.rbegin(); rit != dupStr.rend(); ++rit) { // O(128) Time => Constant Time
+            res += rit->second;             // Total O(n) Space
+        }
+        return res;
 	}
 };
