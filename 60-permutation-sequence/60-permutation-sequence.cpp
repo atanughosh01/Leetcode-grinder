@@ -1,32 +1,19 @@
 class Solution {
-private:
-    vector<int> fact;
-    void findfact(int n) {
-        fact = vector<int>(n, 1);
-        if (n == 1) return;
-        for (int i = 2; i < n; i++) {
-            fact[i] = i * fact[i - 1];
-        }
-    }
 public:
-    string getPermutation(int N, int K) {
-        int n = N - 1, k = K - 1, nt, kt;
-        findfact(N);
-        vector<int> num(N, 0);
-        for (int i = 0; i < N; i++) {
-            num[i] = i + 1;
+    string getPermutation(int n, int k) {
+        int pTable[10]{1};
+        vector<char> numSet{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        for (int i = 1; i <= 9; i++){
+            pTable[i] = i * pTable[i - 1];
         }
-        vector<int>::iterator itr;
-        string ans = "";
-        while (n >= 0) {
-            nt = k / fact[n];
-            kt = k % fact[n];
-            ans += (num[nt] + '0');
-            itr = num.begin();
-            num.erase(itr + nt);
+        string res = "";
+        while (n > 0) {
+            int temp = (k - 1) / pTable[n - 1];
+            res += numSet[temp];
+            numSet.erase(numSet.begin() + temp);
+            k -= temp * pTable[n - 1];
             n--;
-            k = kt;
         }
-        return ans;
+        return res;
     }
 };
