@@ -6,7 +6,7 @@ private:
             if (num > max) return false;    // This step is unnecessary for this problem
             else if (acc + num <= max) acc += num;
             else {
-                --cuts;
+                cuts--;
                 acc = num;
                 if (cuts < 0) return false;
             }
@@ -16,7 +16,7 @@ private:
 public:
     int splitArray(vector<int> &nums, int m) {
         long long left = 0, right = 0;
-        for (int num : nums) {
+        for (int &num : nums) {
             left = max(left, (long long)num);
             right += num;
         }
