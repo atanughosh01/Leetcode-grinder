@@ -10,50 +10,24 @@
  */
 
 
-// O(2*n) time, O(1) space
 class Solution_1 {
 public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {
-        ListNode *pre = head, *tail = head;
+    ListNode* removeNthFromEnd(ListNode *head, int n) {
+        ListNode *preHead = new ListNode(-1);
+        ListNode *temp = preHead->next;
         int len = 0;
-        while (tail != nullptr) {
+        while (temp) {
             len++;
-            tail = tail->next;
+            temp = temp->next;
         }
-        if (len == n) {
-            return head->next;
-        }
-        int m = len - n - 1;
-        while (m--) {
-            pre = pre->next;
-        }
-        ListNode *temp = pre->next;
-        pre->next = temp->next;
-        delete temp;
-        return head;
-    }
-};
-
-
-// O(n) time, O(1) space
-class Solution_2 {
-public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {
-        ListNode *preHead = new ListNode(0);
-        preHead->next = head;
-        ListNode *fast = preHead, *slow = preHead;
-        int k = 0;
-        while (fast != nullptr) {
-            if (k <= n) k++;
-            else slow = slow->next;
-            fast = fast->next;
-        }
-        ListNode *temp = slow->next;
-        slow->next = temp->next;
-        delete temp;
+        temp = head;
+        len -= n - 1;
+        while (len--) temp = temp->next;
+        temp->next = temp->next->next;
         return preHead->next;
     }
 };
+
 
 
 // O(n) time, O(1) space, crisper code, less nodes
