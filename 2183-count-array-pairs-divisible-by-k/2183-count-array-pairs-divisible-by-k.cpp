@@ -16,9 +16,8 @@ public:
 };
 
 
-
 // O P T I M I S E D
-class Solution {
+class Solution_2 {
 public:
     long long countPairs(vector<int> &nums, int k) {
         long long res = 0;
@@ -31,6 +30,32 @@ public:
                 }
             }
             gcds[gcd_i]++;
+        }
+        return res;
+    }
+};
+
+
+// M O S T   O P T I M I S E D
+class Solution {
+public:
+    long long countPairs(vector<int> &nums, int k) {
+        long long res = 0;
+        vector<pair<int, int>> factors;
+        for (int i = 1; i * i <= k; i++) {
+            if (k % i == 0) {
+                factors.push_back({i, 0});
+                if (k / i != i) {
+                    factors.push_back({k / i, 0});
+                }
+            }
+        }
+        for (int &num : nums) {
+            long long gcd_nk = __gcd(num, k);
+            for (auto &[factor, cnt] : factors) {
+                if ((gcd_nk * 1ll * factor) % k == 0) res += cnt;
+                if (gcd_nk == factor) cnt++;
+            }
         }
         return res;
     }
