@@ -1,8 +1,8 @@
 class Solution {
 private:
-    int result = 0, target;
+    int result = 0;
     unordered_map<int, int> mp;
-    void get_result(vector<int> &nums) {
+    void getResult(vector<int> &nums, int target) {
         int sum = 0;
         mp.clear();
         mp[0]++;
@@ -14,7 +14,6 @@ private:
     }
 public:
     int numSubmatrixSumTarget(vector<vector<int>> &matrix, int target) {
-        this->target = target;
         vector<int> row(matrix[0].size());
         for (int i = 0; i < matrix.size(); i++) {
             fill(row.begin(), row.end(), 0);
@@ -22,7 +21,7 @@ public:
                 for (int x = 0; x < matrix[0].size(); x++) {
                     row[x] += matrix[j][x];
                 }
-                get_result(row);
+                getResult(row, target);
             }
         }
         return result;
