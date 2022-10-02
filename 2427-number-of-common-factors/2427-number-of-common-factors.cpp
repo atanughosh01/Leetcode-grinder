@@ -14,7 +14,7 @@ public:
 class Solution {
 public:
     int commonFactors(int a, int b) {
-        a = gcd(a, b);
+        a = __gcd(a, b);
         int sr = sqrt(a);
         int res = sr * sr == a ? -1 : 0;
         for (int i = 1; i <= sr; ++i) {
