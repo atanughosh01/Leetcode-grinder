@@ -47,8 +47,9 @@ public:
             if (check(mid, nums1, nums2, k)) {
                 res = mid;
                 r = mid - 1;
-            } else
+            } else {
                 l = mid + 1;
+            }
         }
         return res;
     }
