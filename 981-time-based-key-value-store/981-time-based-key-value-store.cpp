@@ -8,6 +8,7 @@ public:
     }
 
     string get(string key, int timestamp) {
+        if (!hash.count(key)) return "";
         auto it = hash[key].upper_bound(timestamp);
         if (it == hash[key].begin()) return "";
         return (--it)->second;
