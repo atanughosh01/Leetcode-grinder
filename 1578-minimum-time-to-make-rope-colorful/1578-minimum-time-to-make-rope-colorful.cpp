@@ -4,22 +4,20 @@ public:
         int n = colors.size(), res = 0, l = 0, r = 1;
         if (n == 1) return 0;
         int sum = neededTime[0], mx = neededTime[0];
-        while (r < n) {
-            if (colors[r] == colors[l]) {
+        while (r <= n) {
+            if (r < n && colors[r] == colors[l]) {
                 sum += neededTime[r];
                 mx = max(mx, neededTime[r]);
             } else {
                 res += (sum - mx);
-                l = r;
-                sum = neededTime[l];
-                mx = neededTime[l];
-            }
-            if (r == n - 1 && l != r) {
-                res += (sum - mx);
+                if (r < n) {
+                    l = r;
+                    sum = neededTime[l];
+                    mx = neededTime[l];
+                }
             }
             r++;
         }
-        // cout << n << " " << l << " " << r << "\n";
         return res;
     }
 };
