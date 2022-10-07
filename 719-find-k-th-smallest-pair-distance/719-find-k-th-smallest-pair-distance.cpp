@@ -18,7 +18,6 @@ public:
 };
 
 
-
 // Binary Search | O(n * log(m)) Time | O(1) Space | n = nums.length, m = max of array nums
 class Solution {
 public:
