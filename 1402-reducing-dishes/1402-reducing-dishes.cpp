@@ -6,9 +6,8 @@ public:
 		for (int i = n - 1; i > 0; i--) {
 			s[i - 1] += s[i];
 		}
-		for (int i = 0; i < n; i++) {
-			if (s[i] >= 0)
-				sum += s[i];
+		for (int &x : s) {
+			sum += x * (x >= 0);
 		}
 		return sum;
 	}
