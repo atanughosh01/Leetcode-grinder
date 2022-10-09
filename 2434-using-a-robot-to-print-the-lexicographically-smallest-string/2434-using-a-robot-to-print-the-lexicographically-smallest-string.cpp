@@ -6,11 +6,11 @@ public:
         for (char &c : s)  cnt[c - 'a']++;
         for (char &c : s) {
             int small = 0;
-            t += c;
+            t.push_back(c);
             cnt[c - 'a']--;
             while (small < 26 && cnt[small] == 0) small++;
             while (!t.empty() && t.back() - 'a' <= small) {
-                ans += t.back();
+                ans.push_back(t.back());
                 t.pop_back();
             }
         }
