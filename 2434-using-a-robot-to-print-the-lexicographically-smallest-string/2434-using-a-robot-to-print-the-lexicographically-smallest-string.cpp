@@ -1,26 +1,19 @@
 class Solution {
 public:
     string robotWithString(string &s) {
-        int cnt[26] = {0};
-        for (char &c : s)  cnt[c - 'a']++;
+        int cnt[26]{0};
         string t = "", ans = "";
+        for (char &c : s)  cnt[c - 'a']++;
         for (char &c : s) {
-            int small = -1;
-            for (int j = 0; j <= c - 'a'; j++) {
-                if (cnt[j] > 0) {
-                    small = j;
-                    break;
-                }
-            }
+            int small = 0;
+            t += c;
             cnt[c - 'a']--;
+            while (small < 26 && cnt[small] == 0) small++;
             while (!t.empty() && t.back() - 'a' <= small) {
                 ans += t.back();
                 t.pop_back();
             }
-            (small < c - 'a') ? t += c : ans += c;
         }
-        reverse(t.begin(), t.end());
-        ans += t;
         return ans;
     }
 };
