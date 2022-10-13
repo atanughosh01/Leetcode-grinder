@@ -15,6 +15,7 @@ public:
         ListNode *postNode = node->next;
         swap(postNode->val, node->val);
         node->next = postNode->next;
+        postNode->next = nullptr;
         delete postNode;
     }
 };
