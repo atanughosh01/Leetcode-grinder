@@ -1,6 +1,6 @@
 class Solution {
 private:
-    const static int N = 127;
+    const static int N = 101;
     int dp[N][N];
     string str;
     int xs(int x) { return x == 1 ? 0 : x < 10 ? 1 : x < 100 ? 2 : 3; }
