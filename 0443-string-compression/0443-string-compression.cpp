@@ -1,19 +1,20 @@
 class Solution {
 public:
     int compress(vector<char> &chars) {
-        int idx = 0, n = chars.size();
-        for (int j = 1, count = 1; j <= n; j++, count++) {
-            if (j == n || chars[j] != chars[j - 1]) {
-                chars[idx++] = chars[j - 1];
-                if (count > 1) {
-                    string str = to_string(count);
+        int idx = 0, n = chars.size(), cnt = 1;
+        for (int i = 1; i <= n; i++) {
+            if (i == n || chars[i] != chars[i - 1]) {
+                chars[idx++] = chars[i - 1];
+                if (cnt > 1) {
+                    string str = to_string(cnt);
                     for (char &digit : str) {
                         chars[idx++] = digit;
                     }
                 }
-                count = 0;
+                cnt = 0;
             }
-        }
+            cnt++;
+        }        
         return idx;
     }
 };
