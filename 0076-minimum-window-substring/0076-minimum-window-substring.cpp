@@ -5,7 +5,7 @@ public:
         int min = INT_MAX, start = 0, left = 0, i = 0;
         for (char &c : t) rem[c]++;
         while (i <= m && start < m) {
-            if (req != 0) {
+            if (req) {
                 if (i == m) break;
                 if (rem[s[i]]-- >= 1) req--;
                 i++;
