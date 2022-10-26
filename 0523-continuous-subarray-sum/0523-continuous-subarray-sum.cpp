@@ -36,7 +36,7 @@ public:
 };
 
 
-class Solution {
+class Solution_3 {
 public:
     bool checkSubarraySum(vector<int> &nums, int k) {
         int n = nums.size(), sum = 0;
@@ -50,6 +50,28 @@ public:
                 if (i - mp[rem] > 1) return true;
             } else {
                mp[rem] = i;
+            }
+        }
+        return false;
+    }
+};
+
+
+
+class Solution {
+public:
+    bool checkSubarraySum(vector<int> &nums, int k) {
+        int n = nums.size();
+        if (n == 1) return false;
+        long long sum = 0, rem = 0;
+        unordered_map<int,int> mp{{0, 0}};
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            rem = sum % k;
+            if (!mp.count(rem)) {
+               mp[rem] = i + 1;
+            } else if (mp[rem] < i) {
+                return true;
             }
         }
         return false;
