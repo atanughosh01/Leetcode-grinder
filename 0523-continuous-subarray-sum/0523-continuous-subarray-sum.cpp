@@ -41,7 +41,7 @@ public:
     bool checkSubarraySum(vector<int> &nums, int k) {
         int n = nums.size(), sum = 0;
         if (n == 1) return false;
-        unordered_map<int,int> mp;
+        unordered_map<int, int> mp;
         for (int i = 0; i < n; i++) {
             sum += nums[i];
             int rem = sum % k;
@@ -57,6 +57,26 @@ public:
 };
 
 
+class Solution_4 {
+public:
+    bool checkSubarraySum(vector<int> &nums, int k) {
+        int n = nums.size();
+        if (n == 1) return false;
+        long long sum = 0, rem = 0;
+        unordered_map<int, int> mp{{0, 0}};
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            rem = sum % k;
+            if (!mp.count(rem)) {
+               mp[rem] = i + 1;
+            } else if (mp[rem] < i) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
 
 class Solution {
 public:
@@ -64,13 +84,13 @@ public:
         int n = nums.size();
         if (n == 1) return false;
         long long sum = 0, rem = 0;
-        unordered_map<int,int> mp{{0, 0}};
+        unordered_map<int, int> mp{{0, -1}};
         for (int i = 0; i < n; i++) {
             sum += nums[i];
             rem = sum % k;
             if (!mp.count(rem)) {
-               mp[rem] = i + 1;
-            } else if (mp[rem] < i) {
+               mp[rem] = i;
+            } else if (mp[rem] < i - 1) {
                 return true;
             }
         }
