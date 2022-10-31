@@ -78,7 +78,7 @@ public:
 };
 
 
-class Solution {
+class Solution_5 {
 public:
     bool checkSubarraySum(vector<int> &nums, int k) {
         int n = nums.size();
@@ -93,6 +93,26 @@ public:
             } else if (mp[rem] < i - 1) {
                 return true;
             }
+        }
+        return false;
+    }
+};
+
+
+
+class Solution {
+public:
+    bool checkSubarraySum(vector<int> &nums, int k) {
+        int n = nums.size();
+        if (n == 1) return false;
+        long long sum = 0, rem = 0, pre = 0;
+        unordered_set<int> modk;
+        for (int i = 0; i < n; ++i) {
+            sum += nums[i];
+            rem = sum % k;
+            if (modk.count(rem)) return true;
+            modk.insert(pre);
+            pre = rem;
         }
         return false;
     }
