@@ -99,19 +99,18 @@ public:
 };
 
 
-
 class Solution {
 public:
     bool checkSubarraySum(vector<int> &nums, int k) {
         int n = nums.size();
         if (n == 1) return false;
         long long sum = 0, rem = 0, pre = 0;
-        unordered_set<int> modk;
-        for (int i = 0; i < n; ++i) {
+        unordered_set<int> st;
+        for (int i = 0; i < n; i++) {
             sum += nums[i];
             rem = sum % k;
-            if (modk.count(rem)) return true;
-            modk.insert(pre);
+            if (st.count(rem)) return true;
+            st.insert(pre);
             pre = rem;
         }
         return false;
