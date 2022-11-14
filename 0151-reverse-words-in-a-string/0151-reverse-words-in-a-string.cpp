@@ -1,5 +1,5 @@
 // O(n) time | O(n) space
-class Solution {
+class Solution_1 {
 private: 
     vector<string> split(string &s, const char &c) {
         int n = s.size(), l = 0, r = 0;
@@ -26,3 +26,24 @@ public:
         return res;
     }
 };
+
+
+
+// O(n) time | O(1) space
+class Solution {
+public:
+    string reverseWords(string &s) {
+        int n = s.size(), r = 0, l = 0;
+        while (r < n) {
+            while (r < n && s[r] == ' ') r++;
+            if (r < n && l > 0) s[l++] = ' ';
+            int start = l;
+            while (r < n && s[r] != ' ') s[l++] = s[r++];
+            reverse(s.begin() + start, s.begin() + l);
+        }
+        s.resize(l);
+        reverse(s.begin(), s.end());
+        return s;
+    }
+};
+
