@@ -1,7 +1,7 @@
 class Solution {
 private:
     int calcOverlap(int a1, int a2, int b1, int b2) {
-        int overlap =  min(a2, b2) - max(a1, b1);
+        int overlap = min(a2, b2) - max(a1, b1);
         return max(overlap, 0);
     }
     
