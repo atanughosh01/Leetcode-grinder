@@ -1,3 +1,4 @@
+// O(n * log(n)) Time | O(1) Space | n = skill.length
 class Solution_1 {
 public:
 	long long dividePlayers(vector<int> &skill) {
@@ -16,7 +17,8 @@ public:
 };
 
 
-class Solution {
+// O(n * log(n)) Time | O(1) Space | n = skill.length
+class Solution_2 {
 public:
 	long long dividePlayers(vector<int> &skill) {
 		sort(skill.begin(), skill.end());
@@ -31,4 +33,30 @@ public:
 		}
 		return res;
 	}
+};
+
+
+// O(n) Time | O(n) Space | n = skill.length
+class Solution {
+public:
+    long long dividePlayers(vector<int> &skill) {
+        unordered_map<int, int> mp;
+        long long res = 0, sum = 0;
+        int count = 0, n = skill.size() / 2;
+        for (int &x : skill) sum += x;
+        if (sum % n != 0) return -1;
+        int teamSum = sum / n;
+        for (int &x : skill) {
+            if (mp[teamSum - x] > 0) {
+                mp[teamSum - x]--;
+                res += x * (teamSum - x);
+                count--;
+            } else {
+                mp[x]++;
+                count++;
+            }
+        }
+        if (count != 0) return -1;
+        return res;
+    }
 };
