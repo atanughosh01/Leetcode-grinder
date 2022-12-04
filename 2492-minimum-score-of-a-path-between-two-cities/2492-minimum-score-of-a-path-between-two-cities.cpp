@@ -1,4 +1,4 @@
-class Solution_1 {
+class Solution {
 public:
     int minScore(int n, vector<vector<int>> &roads) {
         queue<pair<int, int>> q;
@@ -13,8 +13,8 @@ public:
         q.push({1, INT_MAX});
         int res = INT_MAX;
         while (!q.empty()) {
-            int sz = q.size();
-            while (sz--) {
+            // int sz = q.size();
+            // while (sz--) {
                 auto topElm = q.front();
                 q.pop();
                 int node = topElm.first;
@@ -29,7 +29,7 @@ public:
                         q.push({newNode, newDist});
                     }
                 }
-            }
+            // }
         }
         return res;
     }
@@ -38,7 +38,7 @@ public:
 
 
 
-class Solution {
+class Solution_1 {
 public:
     int minScore(int n, vector<vector<int>> &roads) {
         queue<vector<int>> q2;
