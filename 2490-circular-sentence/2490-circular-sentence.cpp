@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 private:
     vector<string> split(string &s, const char &c) {
         int n = s.size(), l = 0, r = 0;
@@ -26,4 +26,19 @@ public:
         }
         return true;
     }
+};
+
+
+
+class Solution {
+public:
+	bool isCircularSentence(string &s) {
+		if (s[0] != s.back()) return false;
+		for (int i = 1; i < s.size() - 1; i++) {
+			if (s[i] == ' ' && s[i - 1] != s[i + 1]) {
+				return false;
+			}
+		}
+		return true;
+	}
 };
