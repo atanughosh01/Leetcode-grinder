@@ -1,8 +1,9 @@
 class Solution {
 private:
     int getParent(vector<int> &parents, int idx) {
-        if (parents[idx] == idx)
+        if (parents[idx] == idx) {
             return idx;
+        }
         parents[idx] = getParent(parents, parents[parents[idx]]);
         return parents[idx];
     }
@@ -15,9 +16,8 @@ public:
         priority_queue<vector<int>> pq;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (i != j) {
-                    pq.push({-1 * (abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1])), i, j});
-                }
+                int dxdy = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1]);
+                pq.push({-dxdy, i, j});
             }
         }
         while (edges != n - 1) {
