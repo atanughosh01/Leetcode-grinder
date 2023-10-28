@@ -1,7 +1,7 @@
 class Solution {
 public:
 	int countVowelPermutation(int n) {
-		const int MOD = 1e9 + 7;
+		const long MOD = 1e9 + 7;
 		long dp[5][n + 1], ans = 0;
 		dp[0][1] = dp[1][1] = dp[2][1] = dp[3][1] = dp[4][1] = 1;
 		for (int i = 2; i <= n; i++) {
