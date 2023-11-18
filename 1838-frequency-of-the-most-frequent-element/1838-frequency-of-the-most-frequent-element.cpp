@@ -1,8 +1,8 @@
 class Solution {
 public:
     int maxFrequency(vector<int> &nums, int k) {
-        long long windowSum = 0;
         int l = 0, r = 0, res = 0;
+        long long windowSum = 0;
         sort(nums.begin(), nums.end());
         while (l <= r && r < nums.size()) {
             windowSum += nums[r];
