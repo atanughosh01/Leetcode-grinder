@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 public:
     bool isPalindrome(int x) {
         unsigned int orig = x, back_x = 0;
@@ -6,7 +6,23 @@ public:
             back_x = (back_x * 10) + (x % 10);
             x /= 10;
         }
-        return orig == back_x;
+        return (orig == back_x);
         
+    }
+};
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        long long reversed = 0, temp = x;
+        while (temp) {
+            reversed = reversed * 10 + temp % 10;
+            temp /= 10;
+        }
+
+        return (reversed == x);
     }
 };
