@@ -8,6 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution {
 public:
     void reorderList(ListNode* head) {
@@ -15,7 +16,7 @@ public:
         if (!head) return;
         
         // finding the middle with the help of two pointer approach
-        ListNode *tmp = head, *half = head, *prev = NULL;
+        ListNode *tmp = head, *half = head, *prev = nullptr;
         while (tmp->next && tmp->next->next) {
             tmp = tmp->next->next;
             half = half->next;
@@ -44,6 +45,6 @@ public:
         }
         
         // Base case : closing when we had even length arrays
-        if (head && head->next) head->next->next = NULL;
+        if (head && head->next) head->next->next = nullptr;
     }
 };
