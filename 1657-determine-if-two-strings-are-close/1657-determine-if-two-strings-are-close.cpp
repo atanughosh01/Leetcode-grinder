@@ -5,8 +5,8 @@ public:
             return false;
         }
         vector<int> word1Map(26, 0), word2Map(26, 0);
-        for (auto &c : word1)  word1Map[c - 'a']++;
-        for (auto &c : word2) word2Map[c - 'a']++;
+        for (char &c : word1)  word1Map[c - 'a']++;
+        for (char &c : word2) word2Map[c - 'a']++;
         for (int i = 0; i < 26; i++) {
             if ((word1Map[i] == 0 && word2Map[i] > 0) ||
                 (word2Map[i] == 0 && word1Map[i] > 0)) {
