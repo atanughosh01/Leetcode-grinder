@@ -7,6 +7,6 @@ public:
             b += a;
             a = temp;
         }
-        return a;
+        return (int)a;
     }
 };
