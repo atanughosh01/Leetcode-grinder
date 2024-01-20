@@ -4,7 +4,7 @@ public:
     int sumSubarrayMins(vector<int> &arr) {
         stack<int> st;
         int ans = 0, n = arr.size();
-        for (int i = 0; i <= arr.size(); i++) {
+        for (int i = 0; i <= n; i++) {
             while (!st.empty() && (i == n || arr[st.top()] >= arr[i])) {
                 int idx = st.top();
                 st.pop();
