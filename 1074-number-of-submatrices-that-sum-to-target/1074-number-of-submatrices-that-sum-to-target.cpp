@@ -1,6 +1,6 @@
 class Solution {
 private:
-    int result = 0;
+    int res = 0;
     unordered_map<int, int> mp;
     void getResult(vector<int> &nums, int target) {
         int sum = 0;
@@ -8,7 +8,7 @@ private:
         mp[0]++;
         for (int &num : nums) {
             sum += num;
-            result += mp[sum - target];
+            res += mp[sum - target];
             mp[sum]++;
         }
     }
@@ -24,6 +24,6 @@ public:
                 getResult(row, target);
             }
         }
-        return result;
+        return res;
     }
 };
