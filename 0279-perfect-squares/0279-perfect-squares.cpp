@@ -5,9 +5,9 @@ public:
         dp[0] = 0;
         int count = 1;
         while (count * count <= n) {
-            int sq = count * count;
-            for (int i = sq; i < n + 1; i++) {
-                dp[i] = min(dp[i - sq] + 1, dp[i]);
+            int sqr = count * count;
+            for (int i = sqr; i < n + 1; i++) {
+                dp[i] = min(dp[i - sqr] + 1, dp[i]);
             }
             count++;
         }
