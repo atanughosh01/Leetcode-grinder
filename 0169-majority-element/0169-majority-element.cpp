@@ -5,7 +5,9 @@ public:
         unordered_map<int, int> freq;
         for (int &x : nums) freq[x]++;
         for (auto &[key, val] : freq) {
-            if (val > n/2) return key;
+            if (val > n/2) {
+                return key;
+            }
         }
         return -1;
     }
@@ -17,7 +19,9 @@ public:
     int majorityElement(vector<int> &nums) {
         int res = 0, cnt = 0;
         for (int &x : nums) {
-            if (cnt == 0) res = x;
+            if (cnt == 0) {
+                res = x;
+            }
             cnt += (x == res) ? 1 : -1;
         }
         return res;
