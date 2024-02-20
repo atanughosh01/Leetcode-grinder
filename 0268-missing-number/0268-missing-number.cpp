@@ -10,6 +10,7 @@ public:
     }
 };
 
+
 class Solution_2 {
 public:
     int missingNumber(vector<int> &nums) {
@@ -23,6 +24,7 @@ public:
         return nums[n-1]+1;
     }
 };
+
 
 class Solution_3 {
 public:
