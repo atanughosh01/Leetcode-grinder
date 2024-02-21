@@ -128,7 +128,6 @@ public:
 };
 
 
-
 class Solution {
 private:
     int C[20002];
