@@ -22,7 +22,6 @@ public:
 };
 
 
-
 class Solution_2 {
 public:
     bool hasCycle(ListNode *head) {
@@ -35,7 +34,6 @@ public:
         return false;
     }
 };
-
 
 
 class Solution {
