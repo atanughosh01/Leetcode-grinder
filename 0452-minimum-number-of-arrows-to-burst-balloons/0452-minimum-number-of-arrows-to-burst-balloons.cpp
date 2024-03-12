@@ -19,6 +19,7 @@ public:
     }
 };
 
+
 class Solution_2 {
 public:
     int findMinArrowShots(vector<vector<int>> &points) {
@@ -40,6 +41,7 @@ public:
         return cnt;
     }
 };
+
 
 class Solution {
 public:
