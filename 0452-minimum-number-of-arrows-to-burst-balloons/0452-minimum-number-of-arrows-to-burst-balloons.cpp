@@ -23,7 +23,7 @@ public:
 class Solution_2 {
 public:
     int findMinArrowShots(vector<vector<int>> &points) {
-        if (points.size() == 0) return 0;
+        if (points.empty()) return 0;
     
         // for sorting on basis of 1st column
         sort(points.begin(), points.end());
@@ -46,7 +46,7 @@ public:
 class Solution {
 public:
     int findMinArrowShots(vector<vector<int>> &points) {
-        if (points.size() == 0) return 0;
+        if (points.empty()) return 0;
         sort(points.begin(), points.end());
         int endX = points[0][1], cnt = 1;
         for (auto &point : points) {
