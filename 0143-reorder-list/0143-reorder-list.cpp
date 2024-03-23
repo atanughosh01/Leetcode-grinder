@@ -45,6 +45,8 @@ public:
         }
         
         // Base case : closing when we had even length arrays
-        if (head && head->next) head->next->next = nullptr;
+        if (head && head->next) {
+            head->next->next = nullptr;
+        }
     }
 };
