@@ -1,6 +1,6 @@
 class KthLargest {
 public:
-    priority_queue<int,vector<int>,greater<int>> q;
+    priority_queue<int, vector<int>, greater<int>> q;
     int size;
     
     KthLargest(int k, vector<int> &nums) { 
