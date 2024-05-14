@@ -15,7 +15,6 @@ public:
     }
 };
 
-
 // O(n*n) time | O(n*n) space | n = number of unique booking calls made on book()
 class MyCalendarTwo {
 private:
@@ -35,7 +34,6 @@ public:
         return true;
     }
 };
-
 
 /**
  * Your MyCalendarTwo object will be instantiated and called as such:
