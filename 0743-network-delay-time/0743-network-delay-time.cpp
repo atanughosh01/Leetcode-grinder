@@ -1,5 +1,5 @@
 class Solution {
-   public:
+public:
     int networkDelayTime(vector<vector<int>> &times, int N, int K) {
         vector<pair<int, int>> g[N + 1];
         for (int i = 0; i < times.size(); i++) {
