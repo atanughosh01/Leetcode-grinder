@@ -10,7 +10,7 @@ private:
 		}
 		return true;
 	}
-	void backTrack(vector<vector<string>> &ans, vector<string> &v, string s) {
+	void backTrack(vector<vector<string>> &ans, vector<string> &v, string &s) {
 		int n = s.size();
 		if (n == 0) {
 			ans.push_back(v);
