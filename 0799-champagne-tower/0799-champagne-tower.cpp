@@ -8,6 +8,6 @@ public:
                 res[i] = max(0.0, (res[i] - 1.0) / 2.0);
                 res[i + 1] += res[i];
             }   
-        return min(res[query_glass], 1.0);
+        return min(1.0, res[query_glass]);
     }
 };
