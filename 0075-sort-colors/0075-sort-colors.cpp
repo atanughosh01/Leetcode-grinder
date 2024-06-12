@@ -13,5 +13,6 @@ public:
             if (i >= zero && i < (zero + one)) nums[i] = 1;
             if (i >= (zero + one)) nums[i] = 2;
         }
+        return;
     }
 };
