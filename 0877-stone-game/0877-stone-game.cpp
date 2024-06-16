@@ -1,4 +1,4 @@
-class Solution {
+class Solution_1 {
 private:
 	int sum1 = 0, sum2 = 0;
 	void func(vector<int> &piles, int st, int ed, bool flag) {
@@ -27,6 +27,14 @@ public:
 		if (sum1 > sum2) {
 			return true;
 		}
+		return true;
+	}
+};
+
+
+class Solution {
+public:
+	bool stoneGame(vector<int> &piles) {
 		return true;
 	}
 };
