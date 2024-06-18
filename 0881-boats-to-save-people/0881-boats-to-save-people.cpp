@@ -1,3 +1,4 @@
+
 class Solution_1 {
 public:
 	int numRescueBoats(vector<int> &people, int limit) {
@@ -11,6 +12,7 @@ public:
 		return maxBoats;
 	}
 };
+
 
 
 class Solution {
