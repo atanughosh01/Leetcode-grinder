@@ -3,7 +3,6 @@ private:
     stack<pair<int, int>> stack;
 public:
     StockSpanner() {}
-
     int next(int price) {
         int ans = 1;
         while (!stack.empty() && stack.top().first <= price) {
@@ -14,7 +13,6 @@ public:
         return ans;        
     }
 };
-
 
 
 /**
