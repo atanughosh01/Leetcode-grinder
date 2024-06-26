@@ -12,9 +12,9 @@ public:
                 if (i == j && j == k) {
                     res += c[i] * 1ll * (c[i] - 1) * 1ll * (c[i] - 2) / 6;
                 } else if (i == j && j != k) {
-                    res += c[i] * (c[i] - 1) / 2 * c[k];
+                    res += c[i] * 1ll * (c[i] - 1) / 2 * 1ll * c[k];
                 } else if (j < k) {
-                    res += c[i] * c[j] * c[k];
+                    res += c[i] * 1ll * c[j] * 1ll * c[k];
                 }
             }
         }
