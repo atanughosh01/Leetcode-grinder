@@ -51,7 +51,7 @@ public:
 
 class Solution {
 public:
-    bool canReorderDoubled(vector<int>& arr) {
+    bool canReorderDoubled(vector<int> &arr) {
         sort(arr.begin(), arr.end());
         unordered_map<int, int> mp;
         long long sum = 0;
