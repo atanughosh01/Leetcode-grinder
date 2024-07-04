@@ -9,17 +9,18 @@
  * };
  */
 
+
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        if(head->val == 0) {
+        if (head->val == 0) {
             head = head->next;
         }
         ListNode *res = head;
         ListNode *temp = head;
         int sum = 0;
-        while(temp) {
-            if(temp->val != 0) {
+        while (temp) {
+            if (temp->val != 0) {
                 sum += temp->val;
                 temp = temp->next;
             } else {
