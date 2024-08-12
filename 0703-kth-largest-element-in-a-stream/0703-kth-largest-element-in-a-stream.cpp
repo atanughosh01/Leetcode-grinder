@@ -2,7 +2,6 @@ class KthLargest {
 public:
     priority_queue<int, vector<int>, greater<int>> q;
     int size;
-    
     KthLargest(int k, vector<int> &nums) { 
         size = k;
         for (int c : nums) {
@@ -12,7 +11,6 @@ public:
             }
         }
     }
-    
     int add(int val) {
         q.push(val);
         if (q.size() > size) {
