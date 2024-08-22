@@ -8,7 +8,6 @@ public:
         while (pow < n) pow *= 2;
         return pow;
     }
-
     long long findComplement(int num) {
         return getNxtPowOf2(num) - num -1; 
     }
