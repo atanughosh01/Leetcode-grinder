@@ -1,5 +1,5 @@
 class Solution {
-protected:
+private:
 	int dfs(vector<vector<int>> &stones, int idx, vector<bool> &visited, int &n) {
 		visited[idx] = true;
 		int res = 0;
