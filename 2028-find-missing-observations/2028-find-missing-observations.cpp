@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> missingRolls(vector<int>& rolls, int mean, int n) {
+    vector<int> missingRolls(vector<int> &rolls, int mean, int n) {
         int m = rolls.size();
         int curSum = accumulate(rolls.begin(), rolls.end(), 0);
         int missingSum = mean * (n + m) - curSum;
