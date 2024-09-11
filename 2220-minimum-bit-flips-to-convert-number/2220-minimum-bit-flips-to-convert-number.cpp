@@ -1,5 +1,5 @@
 class Solution {
-private:
+protected:
     int countSetBits(int n) {
         int count = 0;
         while (n) {
