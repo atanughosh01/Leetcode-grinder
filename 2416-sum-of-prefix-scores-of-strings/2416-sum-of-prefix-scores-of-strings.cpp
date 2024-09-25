@@ -4,7 +4,6 @@ public:
     TrieNode *children[26] = {nullptr};
     int prefix_cnt;
 };
-
 class Solution {
 private:
     TrieNode *root = new TrieNode();
