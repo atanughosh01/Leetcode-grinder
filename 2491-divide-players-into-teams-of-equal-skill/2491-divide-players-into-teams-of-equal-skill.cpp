@@ -16,7 +16,6 @@ public:
 	}
 };
 
-
 // O(n * log(n)) Time | O(1) Space | n = skill.length
 class Solution_2 {
 public:
@@ -34,7 +33,6 @@ public:
 		return res;
 	}
 };
-
 
 // O(n) Time | O(n) Space | n = skill.length
 class Solution {
