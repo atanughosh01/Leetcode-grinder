@@ -10,8 +10,9 @@ public:
                 pairs.push_back({n, x});
             }
         }
+        int m = pairs.size();
         sort(pairs.begin(), pairs.end());
-        for (int j = 0; j < pairs.size(); j++) {
+        for (int j = 0; j < m; j++) {
             if (!count[pairs[j].second]++) k++;
             if (k == n) {
                 while (count[pairs[i].second] > 1) count[pairs[i++].second]--;
