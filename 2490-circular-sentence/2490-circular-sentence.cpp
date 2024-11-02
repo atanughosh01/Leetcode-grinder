@@ -29,7 +29,6 @@ public:
 };
 
 
-
 class Solution {
 public:
 	bool isCircularSentence(string &s) {
