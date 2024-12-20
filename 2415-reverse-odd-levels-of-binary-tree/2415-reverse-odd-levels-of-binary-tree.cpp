@@ -10,6 +10,7 @@
  * };
  */
 
+
 class Solution {
     void solve(TreeNode *root1, TreeNode* root2, int lvl) {
         if (root1 == nullptr || root2 == nullptr) return;
